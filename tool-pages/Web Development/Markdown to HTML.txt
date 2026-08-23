@@ -1,0 +1,97 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Web Development</a><span class="crumb-sep">&#8250;</span><span>Markdown to HTML</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Developer Tool</span><div><h1>Markdown to HTML</h1><p>Convert your Markdown text to clean, semantic HTML with a live preview.</p></div></div></div></section>
+
+<section class="container"><div class="tool-layout">
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>Markdown Input</div></div><div class="form-body">
+    <div class="form-group"><textarea class="form-input" id="inputMD" placeholder="# Hello World&#10;&#10;This is **bold** and this is *italic*.&#10;&#10;- List item 1&#10;- List item 2&#10;&#10;> Blockquote&#10;&#10;`inline code`"></textarea></div>
+    <button class="generate-btn" id="convertBtn" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Convert to HTML</button>
+  </div></div>
+
+  <div class="tool-card output-dark"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>HTML Output</div><button class="tool-card-btn" id="copyBtn" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Copy</button></div><div class="output-body"><div class="output-code" id="htmlOutput"></div></div><div class="output-badges"><div class="output-badge"><svg class="badge-good" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg>Semantic HTML</div></div></div>
+
+  <div class="tool-card" style="grid-column:1/-1"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Live Preview</div></div><div class="output-body"><div class="preview-frame" id="preview"></div></div></div>
+</div></section>
+
+
+
+<script>
+(function(){
+  
+
+  function sanitizeUrl(u){
+    u=u.trim().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,'');
+    if(!u)return '';
+    var bad=/^(javascript|data|vbscript):/i;
+    if(bad.test(u))return '#';
+    return u.replace(/"/g,'&quot;');
+  }
+  function escapeHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function md2html(md){
+    var html=escapeHtml(md);
+    html=html.replace(/```(\w*)\n([\s\S]*?)```/g,function(m,lang,code){return '<pre><code class="language-'+lang+'">'+code+'</code></pre>';});
+    html=html.replace(/`([^`]+)`/g,'<code>$1</code>');
+    html=html.replace(/^######\s+(.+)$/gm,'<h6>$1</h6>');
+    html=html.replace(/^#####\s+(.+)$/gm,'<h5>$1</h5>');
+    html=html.replace(/^####\s+(.+)$/gm,'<h4>$1</h4>');
+    html=html.replace(/^###\s+(.+)$/gm,'<h3>$1</h3>');
+    html=html.replace(/^##\s+(.+)$/gm,'<h2>$1</h2>');
+    html=html.replace(/^#\s+(.+)$/gm,'<h1>$1</h1>');
+    html=html.replace(/^---$/gm,'<hr>');
+    html=html.replace(/^>\s+(.+)$/gm,'<blockquote>$1</blockquote>');
+    html=html.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    html=html.replace(/\*(.+?)\*/g,'<em>$1</em>');
+    html=html.replace(/~~(.+?)~~/g,'<del>$1</del>');
+    html=html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,function(m,a,u){return '<img alt="'+a.replace(/"/g,'&quot;')+'" src="'+sanitizeUrl(u)+'"/>';});
+    html=html.replace(/\[([^\]]+)\]\(([^)]+)\)/g,function(m,t,u){return '<a href="'+sanitizeUrl(u)+'">'+t+'</a>';});
+    html=html.replace(/^\s*[-*+]\s+(.+)$/gm,'<li>$1</li>');
+    html=html.replace(/^\s*\d+\.\s+(.+)$/gm,'<li>$1</li>');
+    html=html.replace(/(<li>.*<\/li>\n?)+/g,function(m){return '<ul>'+m+'</ul>';});
+    html=html.replace(/\n\n/g,'</p><p>');
+    html='<p>'+html+'</p>';
+    html=html.replace(/<p>\s*<(h[1-6]|ul|ol|blockquote|pre|hr)/g,'<$1');
+    html=html.replace(/<\/(h[1-6]|ul|ol|blockquote|pre)>\s*<\/p>/g,'</$1>');
+    html=html.replace(/<p>\s*<\/p>/g,'');
+    html=html.replace(/<p><hr><\/p>/g,'<hr>');
+    return html;
+  }
+
+  document.getElementById('convertBtn').addEventListener('click',function(){
+    var md=document.getElementById('inputMD').value;if(!md){alert('Please enter Markdown text.');return;}
+    var html=md2html(md);
+    document.getElementById('htmlOutput').textContent=html;
+    document.getElementById('preview').innerHTML=html;
+  });
+
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var btn=document.getElementById('copyBtn'),t=document.getElementById('htmlOutput').textContent;if(!t)return;
+    var h=btn.innerHTML;
+    var done=function(){btn.innerHTML='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg> Copied!';setTimeout(function(){btn.innerHTML=h;},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done);}
+    else{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);}
+  });
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Markdown to HTML</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Convert</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Markdown to HTML?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
