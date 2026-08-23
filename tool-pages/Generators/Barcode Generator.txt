@@ -1,0 +1,118 @@
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Generators</a><span class="crumb-sep">&#8250;</span><span>Barcode Generator</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Generator</span><div><h1>Barcode Generator</h1><p>Generate barcodes in various formats. Download as PNG for printing or digital use.</p></div></div></div></section>
+
+<section class="container"><div class="tool-layout">
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>Generate Barcode</div></div><div class="form-body">
+    <div class="form-group"><label class="form-label">Barcode Type</label>
+      <select class="form-select" id="barcodeType">
+        <option value="code128">Code 128</option>
+        <option value="code39">Code 39</option>
+        <option value="ean13">EAN-13</option>
+        <option value="upca">UPC-A</option>
+        <option value="itf">ITF-14</option>
+        <option value="msi">MSI</option>
+        <option value="codabar">Codabar</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label">Value</label><input class="form-input" id="barcodeValue" type="text" value="1234567890" placeholder="Enter barcode value"/></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Width (px)</label><input class="form-input" id="barWidth" min="1" max="5" type="number" value="2"/></div>
+      <div class="form-group"><label class="form-label">Height (px)</label><input class="form-input" id="barHeight" min="30" max="200" type="number" value="100"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Show Text</label>
+        <select class="form-select" id="showText"><option value="1">Yes</option><option value="0">No</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Background</label><input class="form-input" id="bgColor" type="color" value="#ffffff"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">Line Color</label><input class="form-input" id="lineColor" type="color" value="#000000"/></div>
+    <button class="generate-btn" id="generateBtn" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>Generate Barcode</button>
+    <div class="barcode-preview" id="preview"></div>
+    <div style="text-align:center;margin-top:10px;display:none" id="dlWrap">
+      <button class="download-btn" id="downloadPng" type="button">&#11015; Download PNG</button>
+      <button class="download-btn" id="downloadSvg" type="button" style="margin-left:6px">&#11015; Download SVG</button>
+    </div>
+  </div></div>
+
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Supported Formats</div></div><div class="form-body">
+    <div style="display:grid;gap:10px">
+      <div style="background:var(--bg);border-radius:10px;padding:12px"><div style="font-weight:700;font-size:.9rem">Code 128</div><div style="font-size:.78rem;color:var(--text-secondary)">High density, supports full ASCII</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:12px"><div style="font-weight:700;font-size:.9rem">Code 39</div><div style="font-size:.78rem;color:var(--text-secondary)">Letters, digits & dash/dot/space</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:12px"><div style="font-weight:700;font-size:.9rem">EAN-13</div><div style="font-size:.78rem;color:var(--text-secondary)">13-digit European Article Number</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:12px"><div style="font-weight:700;font-size:.9rem">UPC-A</div><div style="font-size:.78rem;color:var(--text-secondary)">12-digit Universal Product Code</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:12px"><div style="font-weight:700;font-size:.9rem">ITF-14</div><div style="font-size:.78rem;color:var(--text-secondary)">14-digit Interleaved 2 of 5</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:12px"><div style="font-weight:700;font-size:.9rem">MSI / Codabar</div><div style="font-size:.78rem;color:var(--text-secondary)">Specialty & inventory barcodes</div></div>
+    </div>
+  </div></div>
+</div></section>
+
+
+
+<script>
+(function(){
+  
+
+  var map={code128:'CODE128',code39:'CODE39',ean13:'EAN13',upca:'UPC',itf:'ITF',msi:'MSI',codabar:'codabar'};
+
+  function generate(){
+    var val=document.getElementById('barcodeValue').value.trim();
+    if(!val)return;
+    var type=map[document.getElementById('barcodeType').value]||'CODE128';
+    var w=parseInt(document.getElementById('barWidth').value)||2;
+    var h=parseInt(document.getElementById('barHeight').value)||100;
+    var showTxt=document.getElementById('showText').value==='1';
+    var bg=document.getElementById('bgColor').value;
+    var lc=document.getElementById('lineColor').value;
+
+    var preview=document.getElementById('preview');
+    preview.innerHTML='<svg id="barcodeSvg"></svg>';
+    try{
+      JsBarcode('#barcodeSvg',val,{format:type,width:w,height:h,displayValue:showTxt,background:bg,lineColor:lc,font:'monospace',fontSize:14,margin:10});
+      document.getElementById('dlWrap').style.display='block';
+    }catch(e){preview.innerHTML='<p style="color:#DC2626;font-weight:600">Error: '+e.message+'</p>';document.getElementById('dlWrap').style.display='none';}
+  }
+
+  document.getElementById('generateBtn').addEventListener('click',generate);
+
+  document.getElementById('downloadPng').addEventListener('click',function(){
+    var svg=document.getElementById('barcodeSvg');if(!svg)return;
+    var c=document.createElement('canvas');var ctx=c.getContext('2d');
+    var s=new XMLSerializer().serializeToString(svg);
+    var img=new Image();img.onload=function(){c.width=img.width*2;c.height=img.height*2;ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.width,c.height);
+    var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='barcode.png';a.click();};
+    img.src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(s)));
+  });
+
+  document.getElementById('downloadSvg').addEventListener('click',function(){
+    var svg=document.getElementById('barcodeSvg');if(!svg)return;
+    var s=new XMLSerializer().serializeToString(svg);
+    var blob=new Blob([s],{type:'image/svg+xml'});var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=url;a.download='barcode.svg';a.click();URL.revokeObjectURL(url);
+  });
+
+  generate();
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Barcode Generator</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Generate</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Barcode Generator?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
