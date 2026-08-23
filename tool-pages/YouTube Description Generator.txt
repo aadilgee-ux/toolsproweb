@@ -1,0 +1,104 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">YouTube Tools</a><span class="crumb-sep">&#8250;</span><span>YouTube Description Generator</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+<h1>YouTube Description Generator</h1>
+<p>Generate a complete, SEO-friendly YouTube description with timestamps, hashtags, and links — built from your keywords and tone.</p>
+</div></div></section>
+
+<section class="container"><div class="tool-layout">
+<div class="tool-main">
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> YouTube Description Generator</div>
+</div>
+<div class="form-body">
+<div class="form-group"><label for="inText">Keywords / topic</label>
+<input class="form-input" id="inText" type="text" placeholder="e.g. how to make a website, beginner tutorial"></div>
+<div class="form-group"><label for="tone">Tone</label>
+<select class="form-input" id="tone">
+<option value="casual">Casual & friendly</option>
+<option value="pro">Professional</option>
+<option value="edu">Educational</option>
+</select></div>
+<div class="form-group"><label for="hook">Hook line (optional)</label>
+<input class="form-input" id="hook" type="text" placeholder="e.g. In this video I show you..."></div>
+<div class="form-group"><label>Result</label>
+<textarea class="tool-textarea" id="outText" rows="12" readonly></textarea></div>
+
+<div class="btn-row">
+<button class="generate-btn" id="runBtn" type="button">Run</button>
+<button class="clear-btn" id="clearBtn" type="button">Clear</button>
+<button class="copy-btn" id="copyBtn" type="button">Copy Result</button>
+<button class="download-btn" id="downloadBtn" type="button">Download</button>
+</div>
+</div>
+</div>
+</div>
+<div class="tool-sidebar">
+<div class="info-card"><h3>Privacy Guaranteed</h3><p>Everything runs locally in your browser. Your data is never sent to any server.</p></div>
+</div>
+</div></section>
+
+
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use YouTube Description Generator</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Process</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why use our YouTube Description Generator?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon red">📝</div><h3>Full Description</h3><p>Builds a ready-to-paste description with hooks, keywords, and hashtags.</p></div>
+<div class="feature-card"><div class="feature-icon green">🎯</div><h3>Tone Options</h3><p>Pick casual, professional, or educational tone.</p></div>
+<div class="feature-card"><div class="feature-icon purple">🔒</div><h3>Local</h3><p>Everything is generated in your browser.</p></div>
+</div></div></section>
+
+<style>
+.empty-state{color:#64748b;font-size:.88rem;margin:0;padding:8px 0;}
+.muted{color:#64748b;font-size:.8rem;}
+</style>
+
+<script>
+(function(){
+var inText=document.getElementById('inText'),outText=document.getElementById('outText');
+var runBtn=document.getElementById('runBtn'),clearBtn=document.getElementById('clearBtn'),copyBtn=document.getElementById('copyBtn'),downloadBtn=document.getElementById('downloadBtn');
+function copyText(text,btn,done,orig){
+ function d(){btn.textContent=done;setTimeout(function(){btn.textContent=orig;},2000);}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(d);}
+ else{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);d();}
+}
+
+var tone=document.getElementById('tone'),hook=document.getElementById('hook');
+function run(){
+ var kw=inText.value.trim();if(!kw)throw new Error('Please enter your keywords/topic.');
+ var cap=function(s){return s.replace(/\b\w/g,function(c){return c.toUpperCase();});};
+ var to=tone.value;
+ var h=hook.value.trim()||(to==='pro'?'In this video, we cover '+kw+' in detail.':(to==='edu'?'Welcome! This guide walks you through '+kw+' step by step.':'Hey everyone! Today I\'m sharing everything about '+kw+'.'));
+ var step='';
+ if(to==='edu')step='\n\n\u{23F1} TIMESTAMPS\n0:00 Intro\n0:30 What you will learn\n2:00 Getting started\n5:00 Pro tips\n8:00 Recap & next steps\n';
+ else if(to==='pro')step='\n\nCHAPTERS\n0:00 Intro\n1:30 Key concepts\n4:00 Walkthrough\n7:00 Best practices\n9:00 Summary\n';
+ else step='\n\nJump right in:\n0:00 Intro\n0:45 The basics\n3:30 Advanced tips\n6:00 Mistakes to avoid\n8:30 Wrapping up\n';
+ var hashtags=kw.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(/\s+/).filter(Boolean).slice(0,6).map(function(w){return '#'+w;}).join(' ');
+ if(hashtags){step+='\n\n'+hashtags;}
+ var links='\n\n\u{1F517} SUBSCRIBE for more: https://www.youtube.com/@yourchannel?sub_confirmation=1\n\u{1F4AC} Comment below: what do you want to see next?';
+ outText.value=h+step+links;
+}
+function runSafe(){try{run();}catch(e){if(outText)outText.value='Error: '+e.message;else if(document.getElementById('outBox'))document.getElementById('outBox').innerHTML='<p class="muted">Error: '+String(e.message).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p>';}}
+if(runBtn)runBtn.addEventListener('click',runSafe);
+if(clearBtn)clearBtn.addEventListener('click',function(){if(inText)inText.value='';if(outText)outText.value='';var ob=document.getElementById('outBox');if(ob)ob.innerHTML='<p class="empty-state">Enter your details above and click the button.</p>';if(inText)inText.focus();});
+if(copyBtn)copyBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;copyText(val,this,'Copied!','Copy Result');
+});
+if(downloadBtn)downloadBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var blob=new Blob([val],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='youtube-description-generator.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+});
+})();
+</script>
