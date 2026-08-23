@@ -1,0 +1,99 @@
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Generators</a><span class="crumb-sep">&#8250;</span><span>QR Code Generator</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Generator
+<h1>QR Code Generator</h1>
+<p>Generate high-quality QR codes from text, URLs, emails, WiFi credentials and more. Free, instant, works 100% in your browser.</p>
+</div></div></section>
+
+<section class="container">
+<div class="qr-layout">
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg> Settings</div></div>
+<div class="form-group">
+<label class="form-label">Enter Text or URL</label>
+<textarea class="form-textarea" id="qrInput" placeholder="https://example.com or any text..."></textarea>
+</div>
+<div class="form-group">
+<div class="form-row">
+<div><label class="form-label">Size</label><select class="form-input" id="qrSize"><option value="150">150 x 150</option><option value="200">200 x 200</option><option value="256" selected>256 x 256</option><option value="350">350 x 350</option><option value="512">512 x 512</option></select></div>
+<div><label class="form-label">Color</label><div style="display:flex;gap:8px;align-items:center;"><input id="qrColor" style="width:44px;height:38px;border:2px solid #FFFFFF;border-radius:8px;cursor:pointer;padding:2px;" type="color" value="#000000"/><input class="form-input" id="qrColorText" maxlength="7" placeholder="#000000" type="text" value="#000000"/></div></div>
+</div>
+</div>
+<div class="qr-btn-row">
+<button class="qr-btn primary" id="generateBtn" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Generate QR Code</button>
+<button class="qr-btn" id="downloadBtn" style="display:none;" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Download PNG</button>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Preview</div></div>
+<div class="qr-output" id="qrOutput"><div class="qr-download-info">Your QR code preview will appear here after generation.</div></div>
+</div>
+</div>
+</section>
+
+
+
+<script>
+(function(){
+
+var qrInput=document.getElementById('qrInput');
+var qrSize=document.getElementById('qrSize');
+var qrColor=document.getElementById('qrColor');
+var qrColorText=document.getElementById('qrColorText');
+var generateBtn=document.getElementById('generateBtn');
+var downloadBtn=document.getElementById('downloadBtn');
+var qrOutput=document.getElementById('qrOutput');
+
+qrColor.addEventListener('input',function(){qrColorText.value=qrColor.value});
+qrColorText.addEventListener('input',function(){if(/^#[0-9A-F]{6}$/i.test(qrColorText.value))qrColor.value=qrColorText.value});
+
+function generateQR(){
+var text=qrInput.value.trim();
+if(!text){alert('Please enter text or URL');return}
+var size=+qrSize.value;
+var fgColor=qrColor.value||'#000000';
+var bgColor='#ffffff';
+qrOutput.innerHTML='<div class="qr-code-container" id="qrCodeContainer"><canvas id="qrcodecanvas"></canvas></div><div class="qr-download-info">Size: '+size+'x'+size+' — Color: '+fgColor+'</div>';
+downloadBtn.style.display='inline-flex';
+QRCode.toCanvas(document.getElementById('qrcodecanvas'),text,{width:size,height:size,color:{dark:fgColor,light:bgColor},correctLevel:0});
+}
+
+generateBtn.addEventListener('click',generateQR);
+qrInput.addEventListener('keypress',function(e){if(e.key==='Enter')generateQR()});
+
+downloadBtn.addEventListener('click',function(){
+var canvas=document.getElementById('qrcodecanvas');
+if(!canvas)return;
+var url=canvas.toDataURL('image/png');
+var a=document.createElement('a');
+a.href=url;
+a.download='qrcode-'+Date.now()+'.png';
+a.click();
+});
+
+
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use QR Code Generator</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Generate</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use QR Code Generator?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>

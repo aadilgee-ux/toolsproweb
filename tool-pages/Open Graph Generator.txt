@@ -1,0 +1,178 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">SEO Tools</a><span class="crumb-sep">&#8250;</span><span>Open Graph Generator</span></nav>
+</div></div>
+<section class="tool-hero">
+  <div class="container">
+    <div class="tool-hero-inner">
+
+
+<div>
+        <h1>Open Graph Generator</h1>
+        <p>Create Open Graph meta tags for better social media sharing on Facebook, Twitter, and LinkedIn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="tool-layout">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-card-title">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+          Configure OG Tags
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="form-group">
+          <label class="form-label">Page URL</label>
+          <input class="form-input" id="ogUrl" placeholder="https://example.com/page" type="url"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">OG Title</label>
+          <input class="form-input" id="ogTitle" placeholder="Title for social media (max 60 chars)" type="text" maxlength="60"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">OG Description</label>
+          <textarea class="form-input" id="ogDesc" placeholder="Description for social media (max 200 chars)..." maxlength="200"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Image URL</label>
+          <input class="form-input" id="ogImage" placeholder="https://example.com/image.jpg" type="url"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">OG Type</label>
+            <select class="form-select" id="ogType">
+              <option value="website">Website</option>
+              <option value="article">Article</option>
+              <option value="blog">Blog</option>
+              <option value="product">Product</option>
+              <option value="profile">Profile</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Site Name</label>
+            <input class="form-input" id="ogSiteName" placeholder="My Website" type="text"/>
+          </div>
+        </div>
+        <button class="generate-btn" id="generateBtn" type="button">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Generate OG Tags
+        </button>
+      </div>
+    </div>
+
+    <div class="tool-card output-dark">
+      <div class="tool-card-header">
+        <div class="tool-card-title">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          HTML Snippet
+        </div>
+        <button class="tool-card-btn" id="copyBtn" type="button">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="output-body">
+        <div id="ogPreview"></div>
+        <div class="output-code" id="ogOutput"></div>
+      </div>
+      <div class="output-badges" id="badgesContainer"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+(function(){
+  
+
+  function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  document.getElementById('generateBtn').addEventListener('click', function(){
+    var url = document.getElementById('ogUrl').value.trim();
+    var title = document.getElementById('ogTitle').value.trim();
+    var desc = document.getElementById('ogDesc').value.trim();
+    var image = document.getElementById('ogImage').value.trim();
+    var type = document.getElementById('ogType').value;
+    var siteName = document.getElementById('ogSiteName').value.trim();
+
+    if(!title && !desc){
+      alert('Please enter at least a title or description.');
+      return;
+    }
+
+    var output = '<!-- Open Graph Meta Tags -->\n';
+    output += '<meta property="og:url" content="' + (url || 'https://example.com') + '" />\n';
+    output += '<meta property="og:type" content="' + type + '" />\n';
+    if(siteName){ output += '<meta property="og:site_name" content="' + siteName + '" />\n'; }
+    if(title){ output += '<meta property="og:title" content="' + title + '" />\n'; }
+    if(desc){ output += '<meta property="og:description" content="' + desc + '" />\n'; }
+    if(image){ output += '<meta property="og:image" content="' + image + '" />\n'; output += '<meta property="og:image:width" content="1200" />\n'; output += '<meta property="og:image:height" content="630" />\n'; }
+    output += '\n<!-- Twitter Card Tags -->\n';
+    output += '<meta name="twitter:card" content="' + (image ? 'summary_large_image' : 'summary') + '" />\n';
+    if(title){ output += '<meta name="twitter:title" content="' + title + '" />\n'; }
+    if(desc){ output += '<meta name="twitter:description" content="' + desc + '" />\n'; }
+    if(image){ output += '<meta name="twitter:image" content="' + image + '" />\n'; }
+
+    document.getElementById('ogOutput').textContent = output;
+
+    // Preview
+    var preview = '<div class="og-preview">';
+    preview += '<div class="og-preview-img">' + (image ? '<img src="' + escapeHtml(image) + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML=\'&#128247;\'"/>' : '&#128247;') + '</div>';
+    preview += '<div class="og-preview-body">';
+    preview += '<div class="og-preview-domain">' + (url ? escapeHtml(url.replace(/https?:\/\//, '').split('/')[0]) : 'example.com') + '</div>';
+    preview += '<div class="og-preview-title">' + (title ? escapeHtml(title) : 'Page Title') + '</div>';
+    preview += '<div class="og-preview-desc">' + (desc ? escapeHtml(desc) : 'Page description will appear here when shared on social media.') + '</div>';
+    preview += '</div></div>';
+    document.getElementById('ogPreview').innerHTML = preview;
+
+    // Badges
+    var badges = '';
+    if(title){ badges += '<div class="output-badge"><svg class="badge-good" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg>Title Set</div>'; }
+    if(desc){ badges += '<div class="output-badge"><svg class="badge-good" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg>Description Set</div>'; }
+    if(image){ badges += '<div class="output-badge"><svg class="badge-good" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg>Image Set</div>'; }
+    else { badges += '<div class="output-badge"><svg class="badge-warn" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01"/></svg>No Image</div>'; }
+    document.getElementById('badgesContainer').innerHTML = badges;
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var text = document.getElementById('ogOutput').textContent;
+    if(text){
+      var done = function(){ document.getElementById('copyBtn').innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg> Copied!'; setTimeout(function(){ document.getElementById('copyBtn').innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy'; }, 2000); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      }
+    }
+  });
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Open Graph Generator</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Generate</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Open Graph Generator?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>

@@ -1,0 +1,93 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Text Tools</a><span class="crumb-sep">&#8250;</span><span>Text to Tags Converter</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+<h1>Text to Tags Converter</h1>
+<p>Extract the most important keywords from any text as comma-separated tags for SEO and organization.</p>
+</div></div></section>
+
+<section class="container"><div class="tool-layout">
+<div class="tool-main">
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> Text to Tags Converter</div>
+</div>
+<div class="form-body">
+<textarea class="tool-textarea" id="inText" rows="10" placeholder="Paste your article or text to extract keyword tags."></textarea>
+<div class="form-row">
+<div class="form-group"><label class="form-label">Max Tags</label><input type="number" class="form-input" id="maxTags" value="10" min="1" max="50"></div>
+<div class="form-group"><label class="form-label">Min Word Length</label><input type="number" class="form-input" id="minLen" value="4" min="2" max="20"></div>
+</div>
+<div class="btn-row"><button class="generate-btn" id="runBtn" type="button">Extract Tags</button><button class="clear-btn" id="clearBtn" type="button">Clear</button></div>
+<div class="output-area"><label class="form-label">Tags</label><textarea class="tool-textarea" id="outText" rows="6" readonly></textarea></div>
+<div class="tool-actions-bar"><button class="action-btn" id="copyBtn" type="button">Copy Result</button></div>
+</div>
+</div>
+</div>
+<div class="tool-sidebar">
+<div class="info-card"><h3>Privacy Guaranteed</h3><p>Everything runs locally in your browser. Your text is never sent to any server.</p></div>
+</div>
+</div></section>
+
+
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Text to Tags Converter</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Convert</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why use our Text to Tags Converter?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon purple">🏷</div><h3>Keyword Extraction</h3><p>Pulls out the most frequent meaningful words automatically.</p></div>
+<div class="feature-card"><div class="feature-icon blue">⚙</div><h3>Controls</h3><p>Set the number of tags and minimum word length.</p></div>
+<div class="feature-card"><div class="feature-icon green">⚡</div><h3>SEO Helpful</h3><p>Quick tag ideas for blog posts, products, and articles.</p></div>
+</div></div></section>
+
+<style>
+.diff-out{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.82rem;line-height:1.55;white-space:pre-wrap;background:var(--surface);color:var(--text);}
+.diff-line{margin:0;padding:2px 8px;border-radius:4px;}
+.diff-added{background:rgba(34,197,94,.14);color:#16a34a;}
+.diff-removed{background:rgba(239,68,68,.12);color:#dc2626;text-decoration:line-through;}
+[data-theme="dark"] .diff-added{color:#4ade80;}
+[data-theme="dark"] .diff-removed{color:#f87171;}
+.checkbox{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);cursor:pointer;}
+.checkbox input{width:16px;height:16px;accent-color:var(--brand);}
+</style>
+
+<script>
+(function(){
+var inText=document.getElementById('inText'),outText=document.getElementById('outText');
+var runBtn=document.getElementById('runBtn'),clearBtn=document.getElementById('clearBtn'),copyBtn=document.getElementById('copyBtn'),downloadBtn=document.getElementById('downloadBtn');
+var maxTagsEl=document.getElementById('maxTags'),minLenEl=document.getElementById('minLen');
+var modeCharBtn=document.getElementById('modeChar'),modeWordBtn=document.getElementById('modeWord'),modeLineBtn=document.getElementById('modeLine');
+
+var STOP=new Set(['the','and','for','are','but','not','you','all','any','can','her','was','one','our','out','day','get','has','him','his','how','man','new','now','old','see','way','who','boy','did','its','let','put','say','she','too','use','that','with','have','this','will','your','from','they','know','want','been','good','much','some','time','very','when','come','here','just','like','long','make','many','more','only','over','such','take','than','them','well','were','what','which','while','would','there','their','about','these','other','could','first','after','being','thing','might','where','those','shall','again','still','every','great','small','three','found','under','until','while','where']);
+function run(){var txt=inText.value.toLowerCase();
+var max=parseInt(maxTagsEl.value,10)||10;if(max<1)max=1;if(max>50)max=50;
+var minLen=parseInt(minLenEl.value,10)||4;if(minLen<2)minLen=2;if(minLen>20)minLen=20;
+var words=txt.replace(/[^a-z\s]/g,' ').split(/\s+/).filter(function(w){return w.length>=minLen&&!STOP.has(w);});
+var count={};words.forEach(function(w){count[w]=(count[w]||0)+1;});
+var arr=Object.keys(count).map(function(w){return {w:w,c:count[w]};});
+arr.sort(function(a,b){return b.c-a.c;});
+var top=arr.slice(0,max).map(function(x){return x.w;});
+outText.value=top.join(', ');}
+function runSafe(){try{run();}catch(e){if(outText)outText.value='Error: '+e.message;}}
+if(runBtn)runBtn.addEventListener('click',runSafe);
+if(clearBtn)clearBtn.addEventListener('click',function(){if(inText)inText.value='';if(outText)outText.value='';if(inText)inText.focus();});
+if(copyBtn)copyBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var done=function(){copyBtn.innerHTML='Copied!';setTimeout(function(){copyBtn.innerHTML='Copy Result';},2000);};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(val).then(done)}else{var ta=document.createElement('textarea');ta.value=val;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done()}
+});
+if(downloadBtn)downloadBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var blob=new Blob([val],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='text-to-tags-converter.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+});
+})();
+</script>

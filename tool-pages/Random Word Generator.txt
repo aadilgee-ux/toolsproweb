@@ -1,0 +1,89 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Text Tools</a><span class="crumb-sep">&#8250;</span><span>Random Word Generator</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+<h1>Random Word Generator</h1>
+<p>Generate random English words for brainstorming, passwords, naming, and creative writing.</p>
+</div></div></section>
+
+<section class="container"><div class="tool-layout">
+<div class="tool-main">
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> Random Word Generator</div>
+</div>
+<div class="form-body">
+<div class="form-row">
+<div class="form-group"><label class="form-label">Number of Words</label><input type="number" class="form-input" id="amount" value="10" min="1" max="200"></div>
+<div class="form-group"><label class="form-label">Starting Letter (optional)</label><input type="text" class="form-input" id="letter" maxlength="1" placeholder="Any"></div>
+</div>
+<div class="btn-row"><button class="generate-btn" id="runBtn" type="button">Generate Words</button><button class="clear-btn" id="clearBtn" type="button">Clear</button></div>
+<div class="output-area"><label class="form-label">Words</label><textarea class="tool-textarea" id="outText" rows="8" readonly></textarea></div>
+<div class="tool-actions-bar"><button class="action-btn" id="copyBtn" type="button">Copy Result</button></div>
+</div>
+</div>
+</div>
+<div class="tool-sidebar">
+<div class="info-card"><h3>Privacy Guaranteed</h3><p>Everything runs locally in your browser. Your text is never sent to any server.</p></div>
+</div>
+</div></section>
+
+
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Random Word Generator</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Process</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why use our Random Word Generator?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon green">🎲</div><h3>Real Words</h3><p>A large built-in dictionary of common English words.</p></div>
+<div class="feature-card"><div class="feature-icon blue">⚡</div><h3>Fast</h3><p>Generate any number of words instantly.</p></div>
+<div class="feature-card"><div class="feature-icon purple">💡</div><h3>Creative</h3><p>Great for naming projects, games, and brainstorms.</p></div>
+</div></div></section>
+
+<style>
+.diff-out{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.82rem;line-height:1.55;white-space:pre-wrap;background:var(--surface);color:var(--text);}
+.diff-line{margin:0;padding:2px 8px;border-radius:4px;}
+.diff-added{background:rgba(34,197,94,.14);color:#16a34a;}
+.diff-removed{background:rgba(239,68,68,.12);color:#dc2626;text-decoration:line-through;}
+[data-theme="dark"] .diff-added{color:#4ade80;}
+[data-theme="dark"] .diff-removed{color:#f87171;}
+.checkbox{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);cursor:pointer;}
+.checkbox input{width:16px;height:16px;accent-color:var(--brand);}
+</style>
+
+<script>
+(function(){
+var inText=document.getElementById('inText'),outText=document.getElementById('outText');
+var runBtn=document.getElementById('runBtn'),clearBtn=document.getElementById('clearBtn'),copyBtn=document.getElementById('copyBtn'),downloadBtn=document.getElementById('downloadBtn');
+var amountEl=document.getElementById('amount'),letterEl=document.getElementById('letter');
+var modeCharBtn=document.getElementById('modeChar'),modeWordBtn=document.getElementById('modeWord'),modeLineBtn=document.getElementById('modeLine');
+
+var DICT=['apple','apricot','avocado','banana','beacon','breeze','bridge','bronze','cactus','canyon','castle','cherry','cloud','crystal','daisy','diamond','drift','eagle','ember','falcon','feather','flame','forest','garden','granite','grape','harbor','harvest','hollow','honor','icicle','iris','island','jasmine','jungle','keystone','kingdom','lantern','laurel','leaf','lily','lotus','maple','marble','meadow','mirror','monsoon','mosaic','nebula','oak','ocean','olive','orchid','pearl','pebble','petal','pine','quartz','river','robin','rocket','saffron','sail','sandstone','sapphire','serene','silver','skylark','sparrow','spring','summer','sunrise','sunset','tulip','valley','violet','willow','winter','yonder','zenith','acorn','amber','anchor','arrow','basil','bloom','briar','burlap','candle','cedar','clover','cove','crane','dune','fern','fjord','gale','glade','harbor','hearth','heron','ivy','jade','kettle','lagoon','larkspur','lichen','lumen','marrow','midge','moss','oasis','opal','oriole','peony','puma','quail','rattle','relic','roost','sage','scallop','seagull','shale','sloop','spruce','stall','talon','thistle','tide','topaz','trestle','trout','tundra','vapor','wren'];
+function run(){var amount=parseInt(amountEl.value,10)||10;if(amount<1)amount=1;if(amount>200)amount=200;
+var letter=(letterEl.value||'').trim().toLowerCase();
+var pool=letter?DICT.filter(function(w){return w.charAt(0)===letter;}):DICT;
+if(!pool.length)pool=DICT;
+var out=[];for(var i=0;i<amount;i++){out.push(pool[Math.floor(Math.random()*pool.length)]);}
+outText.value=out.join('\n');}
+function runSafe(){try{run();}catch(e){if(outText)outText.value='Error: '+e.message;}}
+if(runBtn)runBtn.addEventListener('click',runSafe);
+if(clearBtn)clearBtn.addEventListener('click',function(){if(inText)inText.value='';if(outText)outText.value='';if(inText)inText.focus();});
+if(copyBtn)copyBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var done=function(){copyBtn.innerHTML='Copied!';setTimeout(function(){copyBtn.innerHTML='Copy Result';},2000);};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(val).then(done)}else{var ta=document.createElement('textarea');ta.value=val;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done()}
+});
+if(downloadBtn)downloadBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var blob=new Blob([val],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='random-word-generator.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+});
+})();
+</script>

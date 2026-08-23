@@ -1,0 +1,115 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Converter Tools</a><span class="crumb-sep">&#8250;</span><span>Unit Converter</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+<div><h1>Unit Converter</h1><p>Convert between various units of length, weight, temperature, speed, data, time, volume, and area instantly.</p></div></div></div></section>
+
+<main class="container" style="padding-bottom:60px">
+<div class="tool-card" style="max-width:700px;margin:0 auto 40px">
+<div class="form-body">
+<div id="categories" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px"></div>
+<div style="display:flex;gap:12px;align-items:end;margin-bottom:16px;flex-wrap:wrap">
+<div style="flex:1;min-width:120px"><label class="form-label">From</label><select id="fromUnit" class="form-select"></select></div>
+<button id="swapBtn" style="width:42px;height:42px;border-radius:50%;border:2px solid var(--border);background:var(--bg);color:var(--brand);cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">&#8644;</button>
+<div style="flex:1;min-width:120px"><label class="form-label">To</label><select id="toUnit" class="form-select"></select></div>
+</div>
+<div style="margin-bottom:16px"><label class="form-label">Value</label><input type="number" id="inputVal" class="form-input" placeholder="Enter value" value="1"></div>
+<div style="background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+<div><div id="outputVal" style="font-size:1.5rem;font-weight:700;color:var(--brand);word-break:break-all">&#8212;</div><div id="outputLabel" style="font-size:.8rem;color:var(--text-secondary);margin-top:2px"></div></div>
+<button id="copyBtn" style="padding:8px 16px;border-radius:8px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-size:.8rem;cursor:pointer;white-space:nowrap">&#128203; Copy</button>
+</div>
+</div>
+</div>
+
+<div class="info-section">
+<div class="info-grid" style="max-width:700px;margin:0 auto">
+<div class="info-card"><div class="info-icon green">&#128194;</div><h3>Multiple Categories</h3><p>8 categories covering length, weight, temperature, speed, data, time, volume, and area.</p></div>
+<div class="info-card"><div class="info-icon blue">&#9889;</div><h3>Real-time Conversion</h3><p>Results update instantly as you type your input value.</p></div>
+<div class="info-card"><div class="info-icon pink">&#127919;</div><h3>Accurate Results</h3><p>Precise conversion factors ensure accurate calculations every time.</p></div>
+</div>
+</div>
+</main>
+
+
+
+<script>
+(function(){
+var cats={
+length:{name:'Length',base:1,units:{Meter:1,Kilometer:1000,Centimeter:0.01,Millimeter:0.001,Micrometer:0.000001,Nanometer:1e-9,Mile:1609.344,Yard:0.9144,Foot:0.3048,Inch:0.0254,'Nautical Mile':1852}},
+weight:{name:'Weight',base:1,units:{Kilogram:1,Gram:0.001,Milligram:0.000001,'Metric Ton':1000,Pound:0.45359237,Ounce:0.028349523125,Stone:6.35029318}},
+temperature:{name:'Temperature',base:null,units:{Celsius:'C',Fahrenheit:'F',Kelvin:'K'}},
+speed:{name:'Speed',base:1,units:{'Meters/Second':1,'Km/Hour':0.277777778,'Miles/Hour':0.44704,Knots:0.514444444,'Feet/Second':0.3048}},
+data:{name:'Data Size',base:1,units:{Byte:1,KB:1024,MB:1048576,GB:1073741824,TB:1099511627776,bit:0.125,Kbit:128,Mbit:131072,Gbit:134217728}},
+time:{name:'Time',base:1,units:{Second:1,Minute:60,Hour:3600,Day:86400,Week:604800,Month:2629800,Year:31557600}},
+volume:{name:'Volume',base:1,units:{Liter:1,'Milliliter':0.001,'Cubic Meter':1000,'Cubic Foot':28.316846592,'US Gallon':3.785411784,'US Quart':0.946352946,'US Pint':0.473176473,'US Cup':0.236588236,'Fluid Ounce (US)':0.0295735296,'Teaspoon':0.00492892159,'Tablespoon':0.0147867648}},
+area:{name:'Area',base:1,units:{'Square Meter':1,'Square Km':1000000,'Square Foot':0.09290304,'Square Yard':0.83612736,'Acre':4046.8564224,'Hectare':10000,'Square Mile':2589988.110336}}
+};
+var categories=document.getElementById('categories'),fromUnit=document.getElementById('fromUnit'),toUnit=document.getElementById('toUnit');
+var inputVal=document.getElementById('inputVal'),outputVal=document.getElementById('outputVal'),outputLabel=document.getElementById('outputLabel');
+var copyBtn=document.getElementById('copyBtn'),swapBtn=document.getElementById('swapBtn');
+var activeCat='length';
+function fillCategories(){
+categories.innerHTML=Object.keys(cats).map(function(k){return'<button data-cat="'+k+'" style="padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-size:.8rem;font-weight:600;transition:.15s">'+cats[k].name+'</button>'}).join('');
+categories.querySelectorAll('button').forEach(function(b){b.onclick=function(){activeCat=b.dataset.cat;setActiveCat();fillUnits();convert();};});
+setActiveCat();
+}
+function setActiveCat(){
+categories.querySelectorAll('button').forEach(function(b){var on=b.dataset.cat===activeCat;b.style.background=on?'var(--brand)':'var(--bg)';b.style.color=on?'#fff':'var(--text)';});
+}
+function fillUnits(){
+var cat=cats[activeCat],units=Object.keys(cat.units);
+fromUnit.innerHTML=units.map(function(u){return'<option value="'+u+'">'+u+'</option>'}).join('');
+toUnit.innerHTML=units.map(function(u,i){return'<option value="'+u+'"'+(i===1?' selected':'')+'>'+u+'</option>'}).join('');
+}
+function convert(){
+var cat=cats[activeCat],v=parseFloat(inputVal.value);if(isNaN(v)){outputVal.textContent='\u2014';outputLabel.textContent='';return;}
+var fu=fromUnit.value,tu=toUnit.value,out;
+if(activeCat==='temperature'){
+out=tempConvert(v,fu,tu);
+}else{
+out=v*cat.units[fu]/cat.units[tu];
+}
+outputVal.textContent=formatNum(out);
+outputLabel.textContent=tu+(activeCat==='temperature'?' '+cats.temperature.units[tu]:'');
+}
+function tempConvert(v,f,t){
+var c;if(f==='C')c=v;else if(f==='F')c=(v-32)*5/9;else c=v-273.15;
+if(t==='C')return c;if(t==='F')return c*9/5+32;return c+273.15;
+}
+function formatNum(n){
+if(Math.abs(n)>=1e9||(Math.abs(n)<1e-6&&n!==0))return n.toExponential(6);
+var s=Math.abs(n)<1e6?String(Math.round(n*1e6)/1e6):String(n);
+return s;
+}
+inputVal.addEventListener('input',convert);
+fromUnit.addEventListener('change',convert);
+toUnit.addEventListener('change',convert);
+swapBtn.addEventListener('click',function(){var t=fromUnit.value;fromUnit.value=toUnit.value;toUnit.value=t;convert();});
+copyBtn.addEventListener('click',function(){
+var t=outputVal.textContent;if(!t||t==='\u2014')return;var h=copyBtn.innerHTML;
+var done=function(){copyBtn.innerHTML='\u2713 Copied!';setTimeout(function(){copyBtn.innerHTML=h},1500)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t+' '+outputLabel.textContent).then(done);}
+else{var ta=document.createElement('textarea');ta.value=t+' '+outputLabel.textContent;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);}
+});
+fillCategories();fillUnits();inputVal.value='1';convert();
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Unit Converter</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Convert</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Unit Converter?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
