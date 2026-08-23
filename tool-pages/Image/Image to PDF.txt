@@ -1,0 +1,116 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Image/PDF</a><span class="crumb-sep">&#8250;</span><span>Image to PDF</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Image / PDF</span><div><h1>Image to PDF</h1><p>Convert your images (JPG, PNG, WEBP) into a single PDF document. Drag and drop or click to upload.</p></div></div></div></section>
+
+<section class="container"><div class="tool-layout">
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Upload Images</div></div><div class="form-body">
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-icon">&#128444;</div>
+      <div class="upload-text">Click or drag images here</div>
+      <div class="upload-hint">Supports JPG, PNG, WEBP — Multiple files allowed</div>
+    </div>
+    <input id="fileInput" multiple accept="image/*" type="file"/>
+    <div class="preview-grid" id="previewGrid"></div>
+    <button class="generate-btn" id="convertBtn" disabled type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Download PDF</button>
+  </div></div>
+</div></section>
+
+
+
+<script>
+(function(){
+  
+
+  var files=[];var zone=document.getElementById('uploadZone');var input=document.getElementById('fileInput');var grid=document.getElementById('previewGrid');var btn=document.getElementById('convertBtn');
+
+  zone.addEventListener('click',function(){input.click();});
+  zone.addEventListener('dragover',function(e){e.preventDefault();zone.classList.add('dragover');});
+  zone.addEventListener('dragleave',function(){zone.classList.remove('dragover');});
+  zone.addEventListener('drop',function(e){e.preventDefault();zone.classList.remove('dragover');addFiles(e.dataTransfer.files);});
+  input.addEventListener('change',function(){addFiles(input.files);});
+
+  function addFiles(list){
+    for(var i=0;i<list.length;i++){
+      if(list[i].type.startsWith('image/'))files.push(list[i]);
+    }
+    renderPreviews();
+  }
+  function renderPreviews(){
+    grid.innerHTML='';
+    files.forEach(function(f,idx){
+      var div=document.createElement('div');div.className='preview-item';
+      var img=document.createElement('img');
+      var reader=new FileReader();
+      reader.onload=function(e){img.src=e.target.result;};
+      reader.readAsDataURL(f);
+      var rm=document.createElement('button');rm.className='preview-remove';rm.innerHTML='&times;';
+      rm.onclick=function(){files.splice(idx,1);renderPreviews();};
+      div.appendChild(img);div.appendChild(rm);grid.appendChild(div);
+    });
+    btn.disabled=files.length===0;
+  }
+
+  btn.addEventListener('click',function(){
+    if(files.length===0)return;
+    var jsPDF=window.jspdf.jsPDF;
+    var pending=files.length;var images=[];
+    files.forEach(function(f,idx){
+      var reader=new FileReader();
+      reader.onload=function(e){
+        images[idx]=e.target.result;
+        pending--;
+        if(pending===0)generatePDF(images);
+      };
+      reader.readAsDataURL(f);
+    });
+  });
+
+  function generatePDF(imgs){
+    var doc=new jsPDF();
+    var loaded=0;
+    imgs.forEach(function(src,i){
+      var img=new Image();
+      img.onload=function(){
+        var w=img.width,h=img.height;
+        var pw=doc.internal.pageSize.getWidth()-20;
+        var ph=doc.internal.pageSize.getHeight()-20;
+        var ratio=Math.min(pw/w,ph/h);
+        var nw=w*ratio,nh=h*ratio;
+        var x=(doc.internal.pageSize.getWidth()-nw)/2;
+        var y=(doc.internal.pageSize.getHeight()-nh)/2;
+        var canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0);
+        var fmt='JPEG';
+        if(src.indexOf('image/png')===5||src.indexOf('image/webp')===5)fmt='PNG';
+        if(i>0)doc.addPage();
+        doc.addImage(canvas.toDataURL('image/'+(fmt==='PNG'?'png':'jpeg'),0.92),fmt,x,y,nw,nh);
+        loaded++;
+        if(loaded===imgs.length)doc.save('images.pdf');
+      };
+      img.src=src;
+    });
+  }
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Image to PDF</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Calculate</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Image to PDF?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
