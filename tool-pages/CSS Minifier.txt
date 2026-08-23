@@ -1,0 +1,88 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Web Development</a><span class="crumb-sep">&#8250;</span><span>CSS Minifier</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Developer Tool</span><div><h1>CSS Minifier</h1><p>Compress your CSS code by removing whitespace, comments, and unnecessary characters.</p></div></div></div></section>
+
+<section class="container"><div class="tool-layout">
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>CSS Input</div></div><div class="form-body">
+    <div class="form-group"><textarea class="form-input" id="inputCSS" placeholder="Paste your CSS code here..."></textarea></div>
+    <div class="btn-row">
+      <button class="generate-btn" id="minifyBtn" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Minify CSS</button>
+      <button class="alt-btn" id="beautifyBtn" type="button">Beautify</button>
+    </div>
+  </div></div>
+
+  <div class="tool-card output-dark"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>Result</div><button class="tool-card-btn" id="copyBtn" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Copy</button></div><div class="output-body"><div id="statsDisplay"></div><div class="output-code" id="output"></div></div><div class="output-badges"><div class="output-badge"><svg class="badge-good" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg>Client-side only</div></div></div>
+</div></section>
+
+
+
+<script>
+(function(){
+  
+
+  function minifyCSS(css){
+    css=css.replace(/\/\*[\s\S]*?\*\//g,'');
+    var strings=[],placeholders=[];
+    css=css.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g,function(m){strings.push(m);placeholders.push('__CSSSTR'+strings.length+'__');return placeholders[placeholders.length-1];});
+    css=css.replace(/\s*([{}:;,])\s*/g,'$1').replace(/;}/g,'}').replace(/\s+/g,' ');
+    for(var i=0;i<strings.length;i++)css=css.replace(placeholders[i],function(){return strings[i];});
+    return css.trim();
+  }
+  function beautifyCSS(css){
+    css=css.replace(/\/\*[\s\S]*?\*\//g,'');
+    var strings=[],placeholders=[];
+    css=css.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g,function(m){strings.push(m);placeholders.push('__CSSSTR'+strings.length+'__');return placeholders[placeholders.length-1];});
+    css=css.replace(/\s+/g,' ').trim();
+    var result='',indent=0;
+    css.split('').forEach(function(c){
+      if(c==='{'){result+=' {\n';indent++;result+=Array(indent*2+1).join(' ');}
+      else if(c==='}'){result+='\n';indent--;result+=Array(indent*2+1).join(' ');result+='}\n';result+=Array(indent*2+1).join(' ');}
+      else if(c===';'){result+=';\n';result+=Array(indent*2+1).join(' ');}
+      else{result+=c;}
+    });
+    result=result.replace(/\n\s*\n/g,'\n').trim();
+    for(var i=0;i<strings.length;i++)result=result.replace(placeholders[i],function(){return strings[i];});
+    return result;
+  }
+  function updateStats(orig,min){
+    var o=orig.length,m=min.length,pct=o>0?((1-m/o)*100).toFixed(1):0;
+    document.getElementById('statsDisplay').innerHTML='<div class="stats-row"><div class="stat-box"><div class="stat-num">'+o+'</div><div class="stat-label">Original</div></div><div class="stat-box"><div class="stat-num">'+m+'</div><div class="stat-label">Minified</div></div><div class="stat-box"><div class="stat-num">'+pct+'%</div><div class="stat-label">Saved</div></div></div>';
+  }
+  document.getElementById('minifyBtn').addEventListener('click',function(){
+    var css=document.getElementById('inputCSS').value;if(!css){alert('Please enter CSS code.');return;}
+    var result=minifyCSS(css);updateStats(css,result);document.getElementById('output').textContent=result;
+  });
+  document.getElementById('beautifyBtn').addEventListener('click',function(){
+    var css=document.getElementById('inputCSS').value;if(!css){alert('Please enter CSS code.');return;}
+    var result=beautifyCSS(css);document.getElementById('output').textContent=result;document.getElementById('statsDisplay').innerHTML='';
+  });
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var btn=document.getElementById('copyBtn'),t=document.getElementById('output').textContent;if(!t)return;
+    var h=btn.innerHTML;
+    var done=function(){btn.innerHTML='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg> Copied!';setTimeout(function(){btn.innerHTML=h;},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done);}
+    else{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);}
+  });
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use CSS Minifier</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Format</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use CSS Minifier?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>

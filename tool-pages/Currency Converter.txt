@@ -1,0 +1,164 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Units</a><span class="crumb-sep">&#8250;</span><span>Currency Converter</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Unit Converter
+<h1>Currency Converter</h1>
+<p>Currency Converter is a free online tool that lets you convert quickly and accurately — right in your browser. No sign-up, no installation, and no limits.</p>
+</div></div></section>
+
+<section class="container"><div class="tool-layout">
+<div class="tool-main">
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> Currency Converter</div>
+</div>
+<div class="form-body">
+
+<div class="form-row">
+<div class="form-group" style="flex:1"><label for="inVal">Amount</label><input class="form-input" id="inVal" type="number" step="any" min="0" placeholder="e.g. 100"></div>
+</div>
+<div class="form-row">
+<div class="form-group" style="flex:1"><label for="fromU">From</label><select class="form-input" id="fromU"></select></div>
+<div class="form-group" style="flex:1"><label for="toU">To</label><select class="form-input" id="toU"></select></div>
+</div>
+<div class="form-group"><button class="generate-btn" id="loadBtn" type="button">Load Live Rates</button></div>
+<div class="form-group"><label>Result</label>
+<textarea class="tool-textarea" id="outText" rows="4" readonly></textarea></div>
+<div class="output-area" id="outBox" style="display:none"></div>
+
+<div class="btn-row">
+<button class="generate-btn" id="runBtn" type="button">Convert</button>
+<button class="clear-btn" id="clearBtn" type="button">Clear</button>
+<button class="copy-btn" id="copyBtn" type="button">Copy Result</button>
+<button class="download-btn" id="downloadBtn" type="button">Download</button>
+</div>
+</div>
+</div>
+</div>
+<div class="tool-sidebar">
+<div class="info-card"><h3>Privacy Guaranteed</h3><p>Everything runs locally in your browser. Your data is never sent to any server.</p></div>
+</div>
+</div></section>
+
+
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Currency Converter</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Convert</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why use our Currency Converter?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon lime">💰</div><h3>Live rates</h3><p>If CDN works.</p></div>
+<div class="feature-card"><div class="feature-icon green">📝</div><h3>Exchange</h3><p>Quick.</p></div>
+<div class="feature-card"><div class="feature-icon blue">📅</div><h3>Browser</h3><p>Fall-back.</p></div>
+</div></div></section>
+
+<style>
+.table-wrap{overflow-x:auto;}
+.rank-table{width:100%;border-collapse:collapse;font-size:.85rem;}
+.rank-table th,.rank-table td{border:1px solid var(--border);padding:8px 10px;text-align:left;}
+.rank-table th{background:var(--bg-alt);color:var(--text);font-weight:700;}
+.rank-table td{color:var(--text);}
+.trend{font-size:.72rem;font-weight:700;margin-left:4px;}
+.trend.up{color:#16a34a;}
+.trend.down{color:#dc2626;}
+.trend.flat{color:#64748b;}
+.row-del{background:none;border:1px solid var(--border);color:#dc2626;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:.75rem;}
+.empty-state{color:#64748b;font-size:.88rem;margin:0;padding:8px 0;}
+.muted{color:#64748b;font-size:.8rem;}
+.result-link a{display:inline-block;margin:10px 0;padding:10px 18px;background:var(--brand);color:#fff;border-radius:10px;font-weight:700;text-decoration:none;font-size:.9rem;}
+.ok{color:#16a34a;font-weight:700;}
+.no{color:#dc2626;font-weight:700;}
+.chip{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:700;margin:0 4px 8px 0;}
+.chip.ok{background:rgba(34,197,94,.15);color:#16a34a;}
+.chip.no{background:rgba(239,68,68,.15);color:#dc2626;}
+.audit-summary{margin:8px 0;}
+.tw-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:420px;}
+.tw-thumb{height:0;padding-top:52%;background:#1e293b center/cover no-repeat;}
+.tw-card.large .tw-thumb{padding-top:56%;}
+.tw-body{padding:12px 14px;}
+.tw-domain{font-size:.72rem;color:#8899a6;margin-bottom:4px;}
+.tw-title{font-size:.95rem;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:4px;}
+.tw-desc{font-size:.8rem;color:#64748b;line-height:1.4;}
+
+</style>
+
+<script>
+(function(){
+var inText=document.getElementById('inText'),outText=document.getElementById('outText');
+var runBtn=document.getElementById('runBtn'),clearBtn=document.getElementById('clearBtn'),copyBtn=document.getElementById('copyBtn'),downloadBtn=document.getElementById('downloadBtn');
+
+function copyText(text,btn,done,orig){
+ function d(){btn.textContent=done;setTimeout(function(){btn.textContent=orig;},2000);}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(d);}
+ else{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);d();}
+}
+function escHtml(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+var inVal=document.getElementById('inVal'),fromU=document.getElementById('fromU'),toU=document.getElementById('toU'),loadBtn=document.getElementById('loadBtn');
+ var RATES=null;
+ var COMMON=['USD','EUR','GBP','JPY','AUD','CAD','CHF','CNY','INR','PKR','BDT','AED','SAR','TRY','BRL','MXN','RUB','KRW','SGD','NZD','ZAR','NGN','EGP','IDR','MYR','THB','PHP','VND','ARS','CLP','COP'];
+ function fillSelect(sel,codes,val){
+  sel.innerHTML=codes.map(function(c){return '<option value="'+c+'"'+(c===val?' selected':'')+'>'+c+'</option>';}).join('');
+ }
+ function fmtNum(n){
+ if(!isFinite(n))return n.toString();
+ if(n!==0&&(Math.abs(n)<1e-6||Math.abs(n)>=1e15))return n.toExponential(6);
+ var r=Math.round(n*1e10)/1e10;
+ return r.toLocaleString('en-US',{maximumFractionDigits:10});
+}
+
+ function convert(){
+ if(!RATES){outText.value='';var ob=document.getElementById('outBox');ob.style.display='block';ob.innerHTML='<p class="no">Rates not loaded yet.</p><p class="muted">Wait for "Load Live Rates" to finish (needs internet). We do not show made-up exchange rates.</p>';return;}
+ var v=parseFloat(inVal.value);
+ if(isNaN(v)||v<0)throw new Error('Enter a valid amount.');
+ var f=RATES[fromU.value],tt=RATES[toU.value];
+ if(!f||!tt)throw new Error('Rate not available for that currency.');
+ var r=v/f*tt;
+ outText.value=fmtNum(r)+' '+toU.value;
+ var ob=document.getElementById('outBox');ob.style.display='block';
+ ob.innerHTML='<div class="stat-row"><div class="stat-card"><span class="stat-label">'+fmtNum(v)+' '+fromU.value+' equals</span><span class="stat-value">'+fmtNum(r)+' '+escHtml(toU.value)+'</span></div></div>'+
+ '<p class="muted" style="margin-top:8px">Live mid-market rates from open.er-api.com. Not financial advice.</p>';
+ }
+ function loadRates(){
+ var ob=document.getElementById('outBox');ob.style.display='block';
+ ob.innerHTML='<p class="muted">Loading live rates…</p>';
+ fetch('https://open.er-api.com/v6/latest/USD').then(function(r){if(!r.ok)throw new Error('Rate service returned HTTP '+r.status);return r.json();}).then(function(d){
+  if(d.result!=='success'||!d.rates)throw new Error(d['error-type']||'Unexpected response from rate service.');
+  RATES=d.rates;
+  var codes=Object.keys(RATES).sort();
+  var preferred=codes.filter(function(c){return COMMON.indexOf(c)>=0;});
+  var rest=codes.filter(function(c){return COMMON.indexOf(c)<0;});
+  fillSelect(fromU,preferred.concat(rest),'USD');
+  fillSelect(toU,preferred.concat(rest),'EUR');
+  ob.innerHTML='<p class="ok">Rates loaded ('+codes.length+' currencies, updated '+String(d.time_last_update_utc||'').slice(0,16)+').</p>';
+ }).catch(function(e){
+  ob.innerHTML='<p class="no">Could not load live rates: '+escHtml(e.message)+'</p><p class="muted">This tool needs an internet connection to fetch real exchange rates. We do not show made-up numbers.</p>';
+ });
+ }
+ loadBtn.addEventListener('click',loadRates);
+ loadRates();
+ function run(){convert();}
+ window.__fxRun=convert;
+function runSafe(){try{run();}catch(e){if(outText)outText.value='Error: '+e.message;else if(document.getElementById('outBox'))document.getElementById('outBox').innerHTML='<p class="muted">Error: '+String(e.message).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p>';}}
+if(runBtn)runBtn.addEventListener('click',runSafe);
+if(clearBtn)clearBtn.addEventListener('click',function(){if(inText)inText.value='';if(outText)outText.value='';var ob=document.getElementById('outBox');if(ob)ob.innerHTML='<p class="empty-state">Enter your details above and click the button.</p>';if(inText)inText.focus();});
+if(copyBtn)copyBtn.addEventListener('click',function(){
+if(!outText)return;
+var val=outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;copyText(val,this,'Copied!','Copy Result');
+});
+if(downloadBtn)downloadBtn.addEventListener('click',function(){
+if(!outText)return;
+var val=outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var blob=new Blob([val],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='currency-converter.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+});
+})();
+</script>

@@ -1,0 +1,88 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Image/PDF</a><span class="crumb-sep">&#8250;</span><span>Image Converter Hub</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+Image / PDF</span><div><h1>Image Converter Hub</h1><p>Convert images between JPG, PNG, WEBP, and GIF formats. All processing happens in your browser.</p></div></div></div></section>
+
+<section class="container"><div class="tool-layout">
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Upload Image</div></div><div class="form-body">
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-icon">&#128444;</div>
+      <div class="upload-text">Click or drag image here</div>
+      <div class="upload-hint">Supports JPG, PNG, WEBP, GIF</div>
+    </div>
+    <input id="fileInput" accept="image/*" type="file"/>
+    <div class="preview-box" id="previewBox"><img id="previewImg"/></div>
+    <div class="form-row" style="margin-top:14px">
+      <div class="form-group"><label class="form-label">Convert To</label>
+        <select class="form-select" id="format"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WEBP</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Quality (1-100)</label><input class="form-input" id="quality" max="100" min="1" type="number" value="90"/></div>
+    </div>
+    <button class="generate-btn" id="convertBtn" disabled type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Convert & Download</button>
+  </div></div>
+
+  <div class="tool-card"><div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Supported Formats</div></div><div class="form-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:4px">&#128247;</div><div style="font-weight:700;font-size:.9rem">JPG</div><div style="font-size:.75rem;color:var(--text-secondary)">Lossy compression, small size</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:4px">&#127912;</div><div style="font-weight:700;font-size:.9rem">PNG</div><div style="font-size:.75rem;color:var(--text-secondary)">Lossless, supports transparency</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:4px">&#128640;</div><div style="font-weight:700;font-size:.9rem">WEBP</div><div style="font-size:.75rem;color:var(--text-secondary)">Modern format, best compression</div></div>
+      <div style="background:var(--bg);border-radius:10px;padding:14px;text-align:center"><div style="font-size:1.5rem;margin-bottom:4px">&#127916;</div><div style="font-weight:700;font-size:.9rem">GIF</div><div style="font-size:.75rem;color:var(--text-secondary)">Animation support</div></div>
+    </div>
+  </div></div>
+</div></section>
+
+
+
+<script>
+(function(){
+  
+
+  var zone=document.getElementById('uploadZone');var input=document.getElementById('fileInput');var previewImg=document.getElementById('previewImg');var btn=document.getElementById('convertBtn');var sourceFile=null;
+
+  zone.addEventListener('click',function(){input.click();});
+  zone.addEventListener('dragover',function(e){e.preventDefault();zone.classList.add('dragover');});
+  zone.addEventListener('dragleave',function(){zone.classList.remove('dragover');});
+  zone.addEventListener('drop',function(e){e.preventDefault();zone.classList.remove('dragover');if(e.dataTransfer.files.length)loadFile(e.dataTransfer.files[0]);});
+  input.addEventListener('change',function(){if(input.files.length)loadFile(input.files[0]);});
+
+  function loadFile(f){sourceFile=f;var reader=new FileReader();reader.onload=function(e){previewImg.src=e.target.result;document.getElementById('previewBox').style.display='block';btn.disabled=false;};reader.readAsDataURL(f);}
+
+  document.getElementById('convertBtn').addEventListener('click',function(){
+    if(!sourceFile)return;
+    var format=document.getElementById('format').value;
+    var quality=parseInt(document.getElementById('quality').value)/100;
+    var img=new Image();
+    img.onload=function(){
+      var canvas=document.createElement('canvas');canvas.width=img.width;canvas.height=img.height;
+      var ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);
+      canvas.toBlob(function(blob){
+        var url=URL.createObjectURL(blob);
+        var a=document.createElement('a');a.href=url;
+        var ext=format==='image/jpeg'?'.jpg':format==='image/png'?'.png':'.webp';
+        a.download='converted'+ext;a.click();URL.revokeObjectURL(url);
+      },format,quality);
+    };
+    img.src=previewImg.src;
+  });
+})();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Image Converter Hub</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Calculate</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Image Converter Hub?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
