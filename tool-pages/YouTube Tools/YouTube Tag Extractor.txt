@@ -1,0 +1,176 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">YouTube Tools</a><span class="crumb-sep">&#8250;</span><span>YouTube Tag Extractor</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+<h1>YouTube Tag Extractor</h1>
+<p>Extract, analyze, clean, and export YouTube video tags instantly. Get tag counts and remove duplicates.</p>
+</div></div></section>
+
+<section class="container">
+<div class="tool-layout">
+<div class="tool-main">
+
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/></svg> Step 1 — Fetch Video Info</div></div>
+<div class="form-body" style="padding-top:14px;">
+<div class="form-group">
+<label for="ytUrl">YouTube URL</label>
+<input type="text" class="form-input" id="ytUrl" placeholder="https://www.youtube.com/watch?v=...">
+</div>
+<div class="btn-row">
+<button class="generate-btn" id="fetchBtn" type="button">Fetch Video Info</button>
+</div>
+<div id="videoPreview"></div>
+</div>
+</div>
+
+<div class="tool-card" style="margin-top:18px;">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Step 2 — Paste &amp; Process Tags</div></div>
+<div class="form-body" style="padding-top:14px;">
+<div class="form-group">
+<label for="tagInput">Video Tags</label>
+<textarea class="tool-textarea" id="tagInput" rows="6" placeholder="Paste tags here...&#10;e.g. youtube, tutorial, how to, javascript, web development"></textarea>
+<p style="font-size:0.8rem;color:var(--text-secondary);margin-top:6px;">Comma-separated, one per line, or copied straight from the page source — the tool parses, cleans, and de-duplicates automatically.</p>
+</div>
+<div class="btn-row">
+<button class="generate-btn" id="processBtn" type="button">Process Tags</button>
+<button class="clear-btn" id="clearBtn" type="button">Clear All</button>
+</div>
+</div>
+</div>
+
+<div class="tool-card" id="resultsCard" style="display:none;margin-top:18px;">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Tag Analysis</div></div>
+<div class="stat-row"><span class="stat-label"><span class="stat-label-icon pink">T</span>Total Tags</span><span class="stat-value" id="statTotal">0</span></div>
+<div class="stat-row"><span class="stat-label"><span class="stat-label-icon green">U</span>Unique Tags</span><span class="stat-value" id="statUnique">0</span></div>
+<div class="stat-row"><span class="stat-label"><span class="stat-label-icon orange">D</span>Duplicates Removed</span><span class="stat-value" id="statDupes">0</span></div>
+
+<div class="form-group" style="margin-top:14px;">
+<label>Extracted Tags</label>
+<div id="tagsDisplay" style="line-height:2;"></div>
+</div>
+
+<div class="form-group">
+<label>Cleaned &amp; Formatted</label>
+<textarea class="tool-textarea" id="cleanedTags" rows="4" readonly></textarea>
+</div>
+
+<div class="btn-row">
+<button class="download-btn" id="csvBtn" type="button">Export CSV</button>
+<button class="download-btn" id="txtBtn" type="button">Export Text</button>
+<button class="copy-btn" id="copyBtn" type="button">Copy Tags</button>
+</div>
+</div>
+
+</div>
+<div class="tool-sidebar">
+<div class="privacy-card">
+<h3>&#128274; Privacy Guaranteed</h3>
+<p>Everything runs locally in your browser. Your data is never sent to any server.</p>
+</div>
+</div>
+</div>
+</section>
+
+<script>
+function extractVideoId(url){
+var m=url.match(/(?:v=|youtu\.be\/|embed\/|\/v\/)([a-zA-Z0-9_-]{11})/);
+return m?m[1]:null;
+}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function fetchVideo(){
+var url=document.getElementById('ytUrl').value.trim();
+var vid=extractVideoId(url);
+var preview=document.getElementById('videoPreview');
+if(!vid){preview.innerHTML='<p style="color:#EF4444;font-size:0.85rem;margin-top:10px;">Please enter a valid YouTube URL.</p>';return;}
+preview.innerHTML='<p style="color:var(--text-secondary);font-size:0.85rem;margin-top:10px;">Loading...</p>';
+fetch('https://noembed.com/embed?url=https://www.youtube.com/watch?v='+vid)
+.then(function(r){return r.json();})
+.then(function(d){
+if(d.error){preview.innerHTML='<p style="color:#EF4444;font-size:0.85rem;margin-top:10px;">Could not fetch video info.</p>';return;}
+preview.innerHTML='<div style="display:flex;gap:12px;align-items:center;margin-top:12px;padding:10px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);">'
++'<img src="https://img.youtube.com/vi/'+vid+'/mqdefault.jpg" alt="Thumbnail" style="width:96px;border-radius:8px;display:block;">'
++'<div style="min-width:0;"><h3 style="font-size:0.92rem;color:var(--text);margin-bottom:2px;">'+esc(d.title)+'</h3>'
++'<p style="font-size:0.8rem;color:var(--text-secondary);">'+esc(d.author_name||'')+'</p>'
++'<p style="margin-top:4px;font-size:0.72rem;color:var(--text-secondary);">Video ID: '+vid+'</p></div></div>';
+})
+.catch(function(){preview.innerHTML='<p style="color:#EF4444;font-size:0.85rem;margin-top:10px;">Error fetching video info. Check the URL.</p>';});
+}
+document.getElementById('fetchBtn').addEventListener('click',fetchVideo);
+
+function processTags(){
+var raw=document.getElementById('tagInput').value.trim();
+if(!raw){alert('Please paste some tags first.');return;}
+var cleaned=raw.replace(/<[^>]*>/g,' ').replace(/[\n\r]+/g,',');
+var tags=cleaned.split(',').map(function(t){return t.trim().toLowerCase().replace(/[^a-z0-9\s\-\+\.#]/g,'').trim();}).filter(function(t){return t.length>0&&t.length<=60;});
+var unique=[];var dupes=0;var seen={};
+tags.forEach(function(t){if(seen[t]){dupes++;}else{seen[t]=1;unique.push(t);}});
+document.getElementById('resultsCard').style.display='block';
+document.getElementById('statTotal').textContent=tags.length;
+document.getElementById('statUnique').textContent=unique.length;
+document.getElementById('statDupes').textContent=dupes;
+document.getElementById('tagsDisplay').innerHTML=unique.map(function(t){return '<span style="display:inline-block;background:var(--bg-alt);border:1px solid var(--border);color:var(--text);border-radius:20px;padding:3px 10px;margin:3px;font-size:0.78rem;">'+esc(t)+'</span>';}).join('');
+document.getElementById('cleanedTags').value=unique.join(', ');
+}
+document.getElementById('processBtn').addEventListener('click',processTags);
+
+function clearAll(){
+document.getElementById('ytUrl').value='';
+document.getElementById('tagInput').value='';
+document.getElementById('videoPreview').innerHTML='';
+document.getElementById('resultsCard').style.display='none';
+}
+document.getElementById('clearBtn').addEventListener('click',clearAll);
+
+function downloadTags(content,ext){
+var blob=new Blob([content],{type:'text/plain'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='youtube-tags.'+ext;a.click();
+}
+document.getElementById('csvBtn').addEventListener('click',function(){
+var tags=document.getElementById('cleanedTags').value;
+if(!tags){alert('No tags to export.');return;}
+downloadTags('tag\n'+tags.split(', ').join('\n'),'csv');
+});
+document.getElementById('txtBtn').addEventListener('click',function(){
+var tags=document.getElementById('cleanedTags').value;
+if(!tags){alert('No tags to export.');return;}
+downloadTags(tags.split(', ').join('\n'),'txt');
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+var tags=document.getElementById('cleanedTags').value;
+if(!tags){alert('No tags to copy.');return;}
+var btn=this;
+function done(){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy Tags';},1500);}
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(tags).then(done);
+}else{
+var ta=document.createElement('textarea');
+ta.value=tags;
+ta.style.position='fixed';ta.style.opacity='0';
+document.body.appendChild(ta);ta.select();
+document.execCommand('copy');
+document.body.removeChild(ta);
+done();
+}
+});
+</script>
+
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use YouTube Tag Extractor</div></div>
+<ol class="howto-steps">
+<li>Paste the YouTube URL and click <strong>Fetch Video Info</strong> to preview it (optional).</li>
+<li>Paste the video's tags into the box and click <strong>Process Tags</strong> — duplicates are removed and counts shown.</li>
+<li>Click <strong>Copy Tags</strong>, or export them as CSV / Text for your next upload.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use YouTube Tag Extractor?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
