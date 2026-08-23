@@ -1,0 +1,153 @@
+<section class="tool-hero">
+  <div class="container">
+    <h1>Terms of Service</h1>
+    <p>The general conditions for accessing and using Free Online Tools Corner.</p>
+  </div>
+</section>
+
+<section class="container terms-content">
+
+  <div class="terms-section">
+    <p><strong>Effective Date:</strong> August 23, 2026</p>
+    <p><strong>Last Updated:</strong> August 23, 2026</p>
+    <p>These Terms of Service ("Terms") describe the general conditions for accessing and using Free Online Tools Corner.</p>
+    <p>By accessing or using the website, you agree to use it responsibly and in accordance with these Terms.</p>
+    <p>If you do not agree with these Terms, please discontinue use of the website.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>1. About Free Online Tools Corner</h2>
+    <p>Free Online Tools Corner is a website that provides free online tools and utilities for general informational, educational, productivity, development, calculation, conversion, and other permitted purposes.</p>
+    <p>The tools available on the website may change over time.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>2. Acceptance of These Terms</h2>
+    <p>By accessing, browsing, or using Free Online Tools Corner, you acknowledge that you have read and understood these Terms and agree to comply with them.</p>
+    <p>These Terms apply to your use of the website and its available tools and features.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>3. Permitted Use</h2>
+    <p>You may use the website and its tools for lawful purposes and in a manner that does not interfere with the operation of the website or the rights of other users.</p>
+    <p>Examples of permitted use include:</p>
+    <ul>
+      <li>Using available tools for personal productivity</li>
+      <li>Using tools for educational purposes</li>
+      <li>Using tools for ordinary business or professional tasks where appropriate</li>
+      <li>Testing tools with information you are permitted to use</li>
+      <li>Providing constructive feedback about the website</li>
+    </ul>
+  </div>
+
+  <div class="terms-section">
+    <h2>4. Prohibited Use</h2>
+    <p>You must not use Free Online Tools Corner to:</p>
+    <ul>
+      <li>Violate applicable laws or regulations</li>
+      <li>Interfere with website operation or security</li>
+      <li>Attempt unauthorized access to systems or data</li>
+      <li>Distribute malware or malicious code</li>
+      <li>Abuse, overload, or intentionally disrupt website services</li>
+      <li>Scrape or automate access in a manner that harms the website or violates applicable restrictions</li>
+      <li>Use the website to infringe intellectual property or privacy rights</li>
+      <li>Submit content or information that you do not have permission to use</li>
+      <li>Circumvent technical or security protections</li>
+      <li>Use the website for fraudulent or deceptive purposes</li>
+    </ul>
+    <p>We may take reasonable steps to protect the website and its users from misuse.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>5. Tool Results and Accuracy</h2>
+    <p>Free Online Tools Corner aims to provide useful and functional tools, but tool outputs may contain errors, limitations, or unexpected results.</p>
+    <p>Results can depend on factors including:</p>
+    <ul>
+      <li>User-provided input</li>
+      <li>Calculation methods</li>
+      <li>Browser behavior</li>
+      <li>Device limitations</li>
+      <li>Technical implementation</li>
+      <li>External services</li>
+      <li>Changes to third-party systems</li>
+      <li>Software or infrastructure issues</li>
+    </ul>
+    <p>You should independently verify important results before relying on them.</p>
+    <p>This is particularly important when a result may affect a legal, financial, medical, tax, professional, business, safety-related, or other significant decision.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>6. User Responsibility</h2>
+    <p>You are responsible for the information you enter into online tools and for evaluating the results produced by those tools.</p>
+    <p>You should only submit information that you have the right to use.</p>
+    <p>You are also responsible for maintaining the security of your own device, browser, accounts, files, and information.</p>
+    <p>Do not enter sensitive information into a tool unless you have determined that doing so is appropriate for that particular tool.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>7. Intellectual Property</h2>
+    <p>Unless otherwise stated, website design elements, original text, branding, graphics, source code, tool interfaces, and other website materials may be protected by applicable intellectual property laws.</p>
+    <p>Nothing in these Terms automatically transfers ownership of website materials to a visitor.</p>
+    <p>You may use the website for its intended purposes, but you should not copy, reproduce, redistribute, modify, sell, or republish protected website materials without appropriate permission or legal authorization.</p>
+    <p>Third-party names, trademarks, logos, or referenced materials remain the property of their respective owners.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>8. External Links</h2>
+    <p>Free Online Tools Corner may provide links to external websites, services, resources, or platforms.</p>
+    <p>External websites are operated independently and may have different terms, privacy policies, security practices, and content.</p>
+    <p>We do not control every external website and cannot guarantee its availability, accuracy, security, or suitability.</p>
+    <p>Visiting an external website is your responsibility, and you should review its applicable terms and policies.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>9. Website Availability and Changes</h2>
+    <p>We may modify, update, replace, suspend, or discontinue website features or individual tools from time to time.</p>
+    <p>Changes may be necessary because of technical improvements, maintenance, security requirements, third-party changes, hosting or infrastructure limitations, tool redesigns, or other operational reasons.</p>
+    <p>We do not guarantee that a particular tool or feature will always remain available.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>10. Service Limitations</h2>
+    <p>Free Online Tools Corner is provided as an online utility resource.</p>
+    <p>Depending on the particular tool, there may be limitations relating to input size, browser compatibility, processing, availability, performance, or other technical factors.</p>
+    <p>Some tools may also depend on third-party services or technologies that are outside our direct control.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>11. Disclaimer of Warranties</h2>
+    <p>To the extent permitted by applicable law, the website and its tools are provided without guarantees that they will always be uninterrupted, error-free, complete, current, or suitable for every particular purpose.</p>
+    <p>We do not guarantee that every result produced by a tool will be accurate for every situation.</p>
+    <p>Users should evaluate results independently, especially when important decisions depend on them.</p>
+    <p>Nothing in these Terms is intended to exclude a warranty or protection that cannot legally be excluded under applicable law.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>12. Limitation of Liability</h2>
+    <p>To the extent permitted by applicable law, Free Online Tools Corner and its owner/operator should not be held responsible for losses or damages arising from reliance on tool results, website interruptions, technical errors, external websites, user input, or other circumstances beyond reasonable control.</p>
+    <p>This provision is subject to any rights or protections that cannot legally be limited or excluded under applicable law.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>13. Changes to These Terms</h2>
+    <p>We may update these Terms from time to time.</p>
+    <p>Changes may be posted on this page, and the "Last Updated" date may be revised accordingly.</p>
+    <p>Your continued use of the website after updated Terms are published may constitute acceptance of the revised Terms to the extent permitted by applicable law.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>14. Governing Law</h2>
+    <p>These Terms shall be governed by and interpreted according to the applicable laws of the website operator's jurisdiction.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2>15. Contact Information</h2>
+    <p>Questions regarding these Terms may be sent to:</p>
+    <p><strong>Website:</strong> Free Online Tools Corner</p>
+    <p><strong>Website URL:</strong> https://freeonlinetoolscorner.blogspot.com/</p>
+    <p><strong>Website Owner/Operator:</strong> Free Online Tools Corner</p>
+    <p><strong>Contact Email:</strong> support@freeonlinetoolscorner.com</p>
+    <p>These Terms are intended as general website terms and are not a substitute for jurisdiction-specific legal advice.</p>
+  </div>
+
+</section>

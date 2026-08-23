@@ -1,0 +1,188 @@
+<section class="tool-hero">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p>How information may be collected, used, and handled when you use Free Online Tools Corner.</p>
+  </div>
+</section>
+
+<section class="container privacy-content">
+
+  <div class="privacy-section">
+    <p><strong>Effective Date:</strong> August 23, 2026</p>
+    <p><strong>Last Updated:</strong> August 23, 2026</p>
+    <p>Free Online Tools Corner ("we," "us," "our," or "the Website") respects the privacy of visitors and aims to be transparent about how information may be collected, used, and handled when you visit or use our website.</p>
+    <p>This Privacy Policy explains the general categories of information that may be processed through the website.</p>
+    <p>Because the exact technologies and third-party services used by a website can change, this policy uses terms such as "may" and "if enabled" where a particular service has not been confirmed.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>1. About This Privacy Policy</h2>
+    <p>This Privacy Policy applies to the Free Online Tools Corner website:</p>
+    <p><strong>Website:</strong> https://freeonlinetoolscorner.blogspot.com/</p>
+    <p>The website provides free online tools and utilities for general users.</p>
+    <p>By using the website, you acknowledge that you have had an opportunity to review this Privacy Policy.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>2. Information You Voluntarily Provide</h2>
+    <p>Most website tools may be usable without creating an account or directly providing personal information.</p>
+    <p>However, you may voluntarily provide information when you contact us or otherwise communicate with the website.</p>
+    <p>For example, information you voluntarily submit may include:</p>
+    <ul>
+      <li>Your name, if provided</li>
+      <li>Your email address</li>
+      <li>The contents of your message</li>
+      <li>Information about a technical problem</li>
+      <li>Other information you choose to include</li>
+    </ul>
+    <p>Please avoid sending unnecessary sensitive or confidential information through contact forms or email.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>3. Automatically Collected Technical Information</h2>
+    <p>When you visit a website, certain technical information may potentially be processed automatically by the website, hosting platform, browser, advertising providers, analytics services, or other technical systems.</p>
+    <p>Depending on the technologies enabled on the website, this may include information such as:</p>
+    <ul>
+      <li>IP address</li>
+      <li>Browser type</li>
+      <li>Device type</li>
+      <li>Operating system</li>
+      <li>Approximate technical or geographic information</li>
+      <li>Referring pages</li>
+      <li>Pages visited</li>
+      <li>Date and time of visits</li>
+      <li>General usage information</li>
+      <li>Technical information needed to provide or secure the website</li>
+    </ul>
+    <p>The availability and exact nature of this information depends on the services and technologies active on the website.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>4. Cookies and Similar Technologies</h2>
+    <p>Free Online Tools Corner may use cookies, local storage, pixels, tags, or similar technologies where necessary or useful for website functionality, analytics, advertising, security, preferences, or other legitimate website purposes.</p>
+    <p>Cookies are small data files or similar technologies that can allow a website or service to recognize a browser or remember certain information.</p>
+    <p>Some cookies may be set directly by the website, while others may be provided by third-party services.</p>
+    <p>You can generally manage or restrict cookies through your browser settings. Disabling certain cookies may affect the operation or functionality of some websites or features.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>5. Analytics</h2>
+    <p>Free Online Tools Corner may use analytics services if they are enabled on the website.</p>
+    <p>Analytics technologies can help website operators understand general patterns such as:</p>
+    <ul>
+      <li>Which pages receive visits</li>
+      <li>How visitors navigate the website</li>
+      <li>General traffic trends</li>
+      <li>Technical performance</li>
+      <li>Browser or device usage</li>
+      <li>Potential usability problems</li>
+    </ul>
+    <p>Analytics information is generally used to understand and improve the website rather than to identify individual visitors personally.</p>
+    <p>The specific analytics provider, if any, depends on the services currently configured on the website.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>6. Advertising</h2>
+    <p>Free Online Tools Corner may display advertisements if advertising services are enabled.</p>
+    <p>Third-party advertising providers may use cookies or similar technologies to help deliver, personalize, measure, or limit advertisements, depending on the provider's configuration and applicable settings.</p>
+    <p>If Google advertising technologies or other third-party advertising services are used, those services may process information according to their own privacy policies and applicable controls.</p>
+    <p>We do not claim that any particular advertising service is currently active unless it has been specifically configured on the website.</p>
+    <p>Visitors should review the privacy information and settings provided by relevant advertising providers when applicable.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>7. Third-Party Services</h2>
+    <p>The website may use third-party services to support functionality, hosting, analytics, advertising, security, embedded content, or other website operations.</p>
+    <p>Examples may include:</p>
+    <ul>
+      <li>Hosting or publishing services</li>
+      <li>Analytics providers</li>
+      <li>Advertising providers</li>
+      <li>Security services</li>
+      <li>Embedded content providers</li>
+      <li>External tool or API providers</li>
+    </ul>
+    <p>The specific third-party services used may change over time.</p>
+    <p>Third parties may process information according to their own privacy policies, terms, and technical practices. Where appropriate, visitors should review the privacy documentation of those third parties.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>8. How Information May Be Used</h2>
+    <p>Information available to us may be used for purposes such as:</p>
+    <ul>
+      <li>Responding to inquiries</li>
+      <li>Investigating reported problems</li>
+      <li>Maintaining and improving website functionality</li>
+      <li>Understanding website usage</li>
+      <li>Detecting technical problems or abuse</li>
+      <li>Protecting website security</li>
+      <li>Supporting advertising or analytics where enabled</li>
+      <li>Communicating with users who voluntarily contact us</li>
+      <li>Complying with applicable legal or technical requirements</li>
+    </ul>
+  </div>
+
+  <div class="privacy-section">
+    <h2>9. Data Retention</h2>
+    <p>Information may be retained only for as long as reasonably necessary for the purpose for which it was collected, to maintain records, resolve disputes, protect the website, comply with applicable requirements, or fulfill another legitimate purpose.</p>
+    <p>The actual retention period can vary depending on the type of information, how it was collected, and the service involved.</p>
+    <p>Third-party providers may maintain information according to their own retention policies.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>10. Data Security</h2>
+    <p>We take reasonable steps to support the security of information handled through the website.</p>
+    <p>However, no internet transmission, website, online service, or electronic storage system can be guaranteed to be completely secure.</p>
+    <p>For this reason, users should avoid sending passwords, financial information, government identification information, or other highly sensitive information through ordinary website contact channels unless specifically requested through an appropriate secure process.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>11. External Links</h2>
+    <p>Free Online Tools Corner may contain links to external websites or services.</p>
+    <p>These websites operate independently from Free Online Tools Corner and may have their own privacy policies, terms, cookies, and data practices.</p>
+    <p>We are not responsible for the privacy practices or content of external websites.</p>
+    <p>We encourage visitors to review the privacy policies of external websites before providing personal information or using their services.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>12. Children's Privacy</h2>
+    <p>Free Online Tools Corner is intended as a general-purpose website.</p>
+    <p>We do not knowingly seek to collect personal information from children through the website.</p>
+    <p>If a parent or guardian believes that a child has provided personal information to us unnecessarily, they may contact us using the information below so that the matter can be reviewed.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>13. User Choices and Privacy Requests</h2>
+    <p>Depending on the technologies and services used by the website, visitors may have choices regarding:</p>
+    <ul>
+      <li>Browser cookies</li>
+      <li>Advertising personalization</li>
+      <li>Analytics technologies</li>
+      <li>Communications they voluntarily initiate</li>
+      <li>Information submitted through contact channels</li>
+    </ul>
+    <p>You can also manage certain browser-based privacy settings through your browser or device.</p>
+    <p>If you have a privacy-related question or concern regarding information you have submitted directly to us, contact:</p>
+    <p><strong><a href="mailto:support@freeonlinetoolscorner.com">support@freeonlinetoolscorner.com</a></strong></p>
+    <p>Please provide enough information for us to understand your request, while avoiding unnecessary sensitive personal information.</p>
+    <p>Privacy rights and available choices can vary depending on applicable laws, location, the services involved, and the circumstances.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>14. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes to the website, technologies, services, advertising arrangements, analytics, or other practices.</p>
+    <p>When changes are made, the "Last Updated" date at the beginning of this page may be revised.</p>
+    <p>Visitors are encouraged to review this page periodically for the latest information.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>15. Contact Information</h2>
+    <p>If you have questions, concerns, or requests regarding this Privacy Policy, please contact us.</p>
+    <p><strong>Website:</strong> Free Online Tools Corner</p>
+    <p><strong>Website URL:</strong> https://freeonlinetoolscorner.blogspot.com/</p>
+    <p><strong>Website Owner/Operator:</strong> Free Online Tools Corner</p>
+    <p><strong>Contact Email:</strong> support@freeonlinetoolscorner.com</p>
+    <p>This Privacy Policy is intended as general website information and should not be treated as jurisdiction-specific legal advice.</p>
+  </div>
+
+</section>

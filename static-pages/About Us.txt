@@ -1,0 +1,103 @@
+<section class="tool-hero">
+  <div class="container">
+    <h1>About Us</h1>
+    <p>Making useful online utilities easier to access and simpler to use.</p>
+  </div>
+</section>
+
+<section class="container about-content">
+
+  <div class="about-section">
+    <p>Welcome to <strong>Free Online Tools Corner</strong>, a website created to make useful online utilities easier to access and simpler to use.</p>
+    <p>Our goal is straightforward: provide practical <strong>free online tools and web-based utilities</strong> that can help visitors complete everyday digital tasks without unnecessary complexity.</p>
+    <p>Whether you need to work with text, calculate values, convert information, perform an SEO-related task, or use another browser-based utility, Free Online Tools Corner aims to provide convenient tools that are easy to understand and accessible from modern devices.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>What Is Free Online Tools Corner?</h2>
+    <p>Free Online Tools Corner is an online collection of free tools and utilities designed for general internet users.</p>
+    <p>The website may include different categories of browser-based tools, such as:</p>
+    <ul>
+      <li>Text and writing tools</li>
+      <li>SEO and web-related tools</li>
+      <li>Calculators</li>
+      <li>Converters</li>
+      <li>Developer and technical utilities</li>
+      <li>Productivity tools</li>
+      <li>General online utilities</li>
+      <li>Other useful browser-based tools</li>
+    </ul>
+    <p>The exact selection of tools may change over time as existing tools are improved and new utilities are added.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Why We Created This Website</h2>
+    <p>Many simple online tasks do not require complicated software or expensive applications. However, finding a convenient tool for a specific task can sometimes be difficult.</p>
+    <p>Free Online Tools Corner is intended to provide a central place where visitors can find useful online utilities and complete common tasks more conveniently.</p>
+    <p>We focus on simplicity, accessibility, and practical usefulness rather than unnecessary complexity.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Our Approach</h2>
+    <p>We believe an online tool should be understandable and convenient for the person using it.</p>
+    <p>Where practical, our tools are designed to:</p>
+    <ul>
+      <li>Be easy to access through a web browser</li>
+      <li>Have a straightforward interface</li>
+      <li>Provide useful results without unnecessary steps</li>
+      <li>Work across commonly used devices and screen sizes</li>
+      <li>Help users complete common digital tasks efficiently</li>
+    </ul>
+    <p>Tool features and availability may vary, and some tools may have technical limitations depending on the browser, device, input, or type of task involved.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Accuracy and Tool Limitations</h2>
+    <p>We aim to provide useful and reliable tools, but no online tool should be assumed to be perfect in every situation.</p>
+    <p>Results can sometimes be affected by technical limitations, user input, browser behavior, calculation methods, external services, or other factors.</p>
+    <p>When a result is important or could affect a significant personal, professional, financial, legal, medical, or other decision, users should independently verify the result using appropriate authoritative sources or qualified professionals.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Continuous Improvement</h2>
+    <p>Free Online Tools Corner may be updated from time to time.</p>
+    <p>Updates can include improvements to existing tools, corrections, usability changes, performance improvements, new features, or additional utilities.</p>
+    <p>We value useful feedback because visitors can identify problems or opportunities that may not otherwise be obvious.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Who Can Use the Website?</h2>
+    <p>Free Online Tools Corner is intended for general internet users who are looking for accessible online utilities.</p>
+    <p>The website may be useful for students, writers, developers, website owners, content creators, professionals, and anyone who needs a convenient browser-based tool for a particular task.</p>
+    <p>The availability and suitability of individual tools can vary, so users should review the purpose and limitations of a tool before relying on its output.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Our Commitment to Visitors</h2>
+    <p>We aim to maintain a website that is:</p>
+    <ul>
+      <li>Useful</li>
+      <li>Easy to navigate</li>
+      <li>Transparent about its purpose</li>
+      <li>Respectful of user privacy</li>
+      <li>Clear about tool limitations</li>
+      <li>Focused on providing practical value</li>
+    </ul>
+    <p>We also aim to keep website information and tools reasonably current, although we cannot guarantee that every tool or piece of information will always be completely error-free or continuously available.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Get in Touch</h2>
+    <p>Your feedback can help us improve Free Online Tools Corner.</p>
+    <p>If you discover a problem with a tool, notice an incorrect result, have a suggestion, or want to contact us about another website-related matter, please visit our <a href="/p/contact-us.html">Contact Us page</a>.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Contact Information</h2>
+    <p><strong>Website Owner/Operator:</strong> Free Online Tools Corner</p>
+    <p><strong>Contact Email:</strong> support@freeonlinetoolscorner.com</p>
+    <p><strong>Website:</strong> https://freeonlinetoolscorner.blogspot.com/</p>
+    <p>Thank you for visiting <strong>Free Online Tools Corner</strong> and using our free online tools and utilities.</p>
+  </div>
+
+</section>

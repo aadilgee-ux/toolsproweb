@@ -1,0 +1,82 @@
+<section class="tool-hero">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Questions, suggestions, corrections, or bug reports Ã¢â‚¬â€ we'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="container contact-content">
+
+  <div class="about-section">
+    <p>We value feedback from visitors and welcome questions, suggestions, corrections, and reports about Free Online Tools Corner.</p>
+    <p>If you have encountered a problem with one of our tools or would like to suggest an improvement, please contact us using the information below.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>How to Contact Us</h2>
+    <p><strong>Contact Email:</strong> <a href="mailto:support@freeonlinetoolscorner.com">support@freeonlinetoolscorner.com</a></p>
+  </div>
+
+  <div class="about-section">
+    <h2>What Can You Contact Us About?</h2>
+    <h3>Tool Problems</h3>
+    <p>If a tool is not working correctly, does not load, produces an unexpected result, or behaves differently from what you expected, please let us know.</p>
+    <h3>Bug Reports</h3>
+    <p>We appreciate reports about technical problems, broken features, layout issues, browser compatibility problems, or other website errors.</p>
+    <h3>Incorrect or Unexpected Results</h3>
+    <p>If you believe a tool has produced an incorrect or unexpected result, please provide enough information for us to understand and investigate the issue.</p>
+    <h3>Suggestions and Feature Requests</h3>
+    <p>Have an idea for a new free online tool or an improvement to an existing one? You are welcome to send your suggestion.</p>
+    <p>While we cannot guarantee that every request will be implemented, useful suggestions may help guide future improvements.</p>
+    <h3>Content Corrections</h3>
+    <p>If you notice inaccurate, outdated, unclear, or misleading information on the website, please contact us with the relevant page and explain the correction you believe is needed.</p>
+    <h3>Privacy Questions</h3>
+    <p>For questions about privacy, cookies, analytics, advertising technologies, or how information may be handled on the website, please contact us using the email address above.</p>
+    <h3>Business or Partnership Inquiries</h3>
+    <p>Businesses, website owners, developers, and other organizations may contact us regarding legitimate business-related matters, collaborations, partnerships, or other relevant inquiries.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>What Information Should You Include?</h2>
+    <p>For a tool-related problem, providing a few useful details can make it easier to understand the issue.</p>
+    <p>Where appropriate, please include:</p>
+    <ul>
+      <li>The name of the tool</li>
+      <li>The page URL</li>
+      <li>A brief description of the problem</li>
+      <li>What you expected to happen</li>
+      <li>What actually happened</li>
+      <li>The type of device you were using</li>
+      <li>Your browser name and version, if relevant</li>
+      <li>A sample input that demonstrates the issue, provided it does not contain sensitive personal information</li>
+    </ul>
+    <p><strong>Please do not send passwords, payment card information, government identification numbers, or other highly sensitive personal information.</strong></p>
+  </div>
+
+  <div class="about-section">
+    <h2>Response Times</h2>
+    <p>We will make reasonable efforts to review legitimate messages, but we do not guarantee a specific response time.</p>
+    <p>The time required to respond can depend on the nature and complexity of the inquiry.</p>
+  </div>
+
+  <div class="about-section">
+    <h2>Before Contacting Us</h2>
+    <p>For general questions about how the website works, you may also want to review our:</p>
+    <ul>
+      <li><a href="/p/privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="/p/terms-of-service.html">Terms of Service</a></li>
+      <li><a href="/p/disclaimer.html">Disclaimer</a></li>
+      <li><a href="/p/about-us.html">About Us page</a></li>
+    </ul>
+  </div>
+
+  <div class="about-section">
+    <h2>Contact Information</h2>
+    <p><strong>Website:</strong> Free Online Tools Corner</p>
+    <p><strong>Website URL:</strong> https://freeonlinetoolscorner.blogspot.com/</p>
+    <p><strong>Website Owner/Operator:</strong> Free Online Tools Corner</p>
+    <p><strong>Contact Email:</strong> support@freeonlinetoolscorner.com</p>
+    <p>We appreciate your interest in Free Online Tools Corner and your help in identifying ways the website can become more useful.</p>
+  </div>
+
+</section>
