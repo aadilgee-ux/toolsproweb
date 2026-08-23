@@ -87,6 +87,22 @@ nav.main-nav a:hover{background:var(--sky);color:var(--royal)}
 .stat:nth-child(3){background:linear-gradient(135deg,#16A34A,#22C55E)}
 .stat:nth-child(4){background:linear-gradient(135deg,#DB2777,#EC4899)}
 
+
+/* Hero Slider */
+.hero-slider{max-width:1280px;margin:0 auto;padding:10px 24px 0}
+.hs-wrap{position:relative;overflow:hidden;border-radius:24px;background:var(--card);border:1px solid var(--line);-webkit-box-shadow:var(--shadow);box-shadow:var(--shadow)}
+.hs-track{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-transition:-webkit-transform .55s cubic-bezier(.4,0,.2,1);transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.hs-slide{min-width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:30px;padding:44px 48px}
+.hs-slide h3{font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:800;line-height:1.2;margin-bottom:12px}
+.hs-slide h3 span{color:var(--royal)}
+.hs-slide p{color:var(--muted);font-size:.98rem;max-width:480px;margin-bottom:22px}
+.hs-art{-ms-flex-negative:0;flex-shrink:0;margin-left:auto}
+.hs-art svg{width:110px;height:110px}
+.hs-dots{display:-webkit-box;display:-ms-flexbox;display:flex;gap:8px;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:16px 0 4px}
+.hs-dot{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;border:none;padding:0;-webkit-transition:all .3s;transition:all .3s}
+.hs-dot.active{background:var(--royal);width:26px;border-radius:50px}
+@media (max-width:700px){.hs-slide{padding:30px 24px;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;text-align:center}.hs-art{margin:0 auto}.hs-art svg{width:80px;height:80px}}
+
 /* Section titles */
 .section-head{text-align:center;padding:70px 24px 34px}
 .section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800}
@@ -218,6 +234,40 @@ footer.tpw-footer{background:var(--grad);color:#fff;margin-top:60px}
  </div>
 </section>
 
+
+<!-- ================= HERO SLIDER ================= -->
+<section class='hero-slider'>
+ <div class='hs-wrap'>
+  <div class='hs-track' id='hsTrack'>
+   <div class='hs-slide'>
+    <div>
+     <h3>All-in-One <span>Free Online Tools</span></h3>
+     <p>Lightning-fast SEO, image, text and developer utilities. No login, 100% free.</p>
+     <a class='btn btn-primary' href='#all-tools'><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><path d='m20 20-3.5-3.5'/></svg> Explore Tools</a>
+    </div>
+    <div class='hs-art'><svg viewBox='0 0 24 24' fill='none' stroke='#2F6BFF' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><path d='M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z'/></svg></div>
+   </div>
+   <div class='hs-slide'>
+    <div>
+     <h3>Boost Your <span>SEO in One Click</span></h3>
+     <p>Analyze, optimize and rank higher with a professional-grade SEO toolset.</p>
+     <a class='btn btn-primary' href='#sec-seo'>Open SEO Tools</a>
+    </div>
+    <div class='hs-art'><svg viewBox='0 0 24 24' fill='none' stroke='#2F6BFF' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><line x1='18' x2='18' y1='20' y2='10'/><line x1='12' x2='12' y1='20' y2='4'/><line x1='6' x2='6' y1='20' y2='14'/></svg></div>
+   </div>
+   <div class='hs-slide'>
+    <div>
+     <h3>Edit Images <span>Without Software</span></h3>
+     <p>Compress, convert and resize images &#8212; directly in your browser.</p>
+     <a class='btn btn-primary' href='#sec-imgpdf'>Open Image Tools</a>
+    </div>
+    <div class='hs-art'><svg viewBox='0 0 24 24' fill='none' stroke='#2F6BFF' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'><rect height='18' rx='2' width='18' x='3' y='3'/><circle cx='8.5' cy='8.5' r='1.5'/><polyline points='21 15 16 10 5 21'/></svg></div>
+   </div>
+  </div>
+  <div class='hs-dots' id='hsDots'></div>
+ </div>
+</section>
+
 <section class='stats'>
  <div class='stat'><div class='stat-num' data-count='230' data-suffix='+'>0+</div><div class='stat-lbl'>Free Tools</div></div>
  <div class='stat'><div class='stat-num' data-count='10' data-suffix='+'>0+</div><div class='stat-lbl'>Categories</div></div>
@@ -309,14 +359,15 @@ footer.tpw-footer{background:var(--grad);color:#fff;margin-top:60px}
   </div>
   <div>
    <h4>Legal</h4>
-   <a href='#'>About Us</a>
-   <a href='#'>Contact Us</a>
-   <a href='#'>Privacy Policy</a>
-   <a href='#'>Terms of Service</a>
-   <a href='#'>Disclaimer</a>
+   <a href='/p/about-us.html'>About Us</a>
+   <a href='/p/contact-us.html'>Contact Us</a>
+   <a href='/p/privacy-policy.html'>Privacy Policy</a>
+   <a href='/p/terms-of-service.html'>Terms of Service</a>
+   <a href='/p/disclaimer.html'>Disclaimer</a>
+   <a href='/sitemap.xml'>Sitemap</a>
   </div>
  </div>
- <div class='foot-bottom'>&#169; 2026 Tools Pro Web. All rights reserved.</div>
+ <div class='foot-bottom'>&#169; <script>document.write(new Date().getFullYear())</script> Tools Pro Web. All rights reserved.</div>
 </footer>
 
 <button aria-label='Back to top' id='toTop' onclick='window.scrollTo({top:0,behavior:&quot;smooth&quot;})'>&#8593;</button>
@@ -463,6 +514,31 @@ window.addEventListener('scroll', function(){
   } else {
     nums.forEach(animate);
   }
+})();
+
+/* Hero slider */
+(function(){
+  var track = document.getElementById('hsTrack');
+  if (!track) return;
+  var dotsWrap = document.getElementById('hsDots');
+  var total = track.children.length;
+  var cur = 0, timer = null;
+  for (var i = 0; i < total; i++) {
+    var b = document.createElement('button');
+    b.className = 'hs-dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    (function(idx){ b.onclick = function(){ go(idx); reset(); }; })(i);
+    dotsWrap.appendChild(b);
+  }
+  function go(n){
+    cur = (n + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    var ds = dotsWrap.children;
+    for (var i = 0; i < ds.length; i++) ds[i].classList.toggle('active', i === cur);
+  }
+  function next(){ go(cur + 1); }
+  function reset(){ clearInterval(timer); timer = setInterval(next, 4500); }
+  reset();
 })();
 var menu = document.getElementById('mainNav');
 if (menu) menu.querySelectorAll('a').forEach(function(a){
