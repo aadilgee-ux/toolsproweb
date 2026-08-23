@@ -1,0 +1,140 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">SEO Tools</a><span class="crumb-sep">&#8250;</span><span>Website Ranking Checker</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+<h1>Website Ranking Checker</h1>
+<p>Track your keyword rankings over time right in your browser. Save positions, view history, and spot trends without any server.</p>
+</div></div></section>
+
+<section class="container"><div class="tool-layout">
+<div class="tool-main">
+<div class="tool-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> Website Ranking Checker</div>
+</div>
+<div class="form-body">
+<div class="form-row">
+<div class="form-group"><label class="form-label">Keyword</label><input type="text" class="form-input" id="kw" placeholder="e.g. best free online tools"></div>
+<div class="form-group"><label class="form-label">Position</label><input type="number" class="form-input" id="pos" value="1" min="1" max="100"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label">Search Engine</label><select class="form-select" id="engine"><option value="Google">Google</option><option value="Bing">Bing</option><option value="DuckDuckGo">DuckDuckGo</option></select></div>
+<div class="form-group"><label class="form-label">Date</label><input type="date" class="form-input" id="rdate"></div>
+</div>
+<div class="btn-row"><button class="generate-btn" id="addBtn" type="button">Add Ranking Entry</button><button class="clear-btn" id="clearBtn" type="button">Clear All</button></div>
+<div class="output-area"><label class="form-label">Ranking History</label><div class="table-wrap" id="tableWrap"><p class="empty-state">No entries yet. Add your first keyword position above.</p></div></div>
+<div class="tool-actions-bar"><button class="action-btn" id="copyBtn" type="button">Copy Table (CSV)</button></div>
+</div>
+</div>
+</div>
+<div class="tool-sidebar">
+<div class="info-card"><h3>Privacy Guaranteed</h3><p>Everything runs locally in your browser. Your data is never sent to any server.</p></div>
+</div>
+</div></section>
+
+
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Website Ranking Checker</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Check</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why use our Website Ranking Checker?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">📈</div><h3>Local Tracking</h3><p>Save your keyword positions locally and review them anytime.</p></div>
+<div class="feature-card"><div class="feature-icon green">⏳</div><h3>History</h3><p>See how each keyword moves up or down over time.</p></div>
+<div class="feature-card"><div class="feature-icon purple">🔒</div><h3>Private</h3><p>Your ranking data never leaves your device.</p></div>
+</div></div></section>
+
+<style>
+.table-wrap{overflow-x:auto;}
+.rank-table{width:100%;border-collapse:collapse;font-size:.85rem;}
+.rank-table th,.rank-table td{border:1px solid var(--border);padding:8px 10px;text-align:left;}
+.rank-table th{background:var(--bg-alt);color:var(--text);font-weight:700;}
+.rank-table td{color:var(--text);}
+.trend{font-size:.72rem;font-weight:700;margin-left:4px;}
+.trend.up{color:#16a34a;}
+.trend.down{color:#dc2626;}
+.trend.flat{color:var(--text-muted,#64748b);}
+.row-del{background:none;border:1px solid var(--border);color:#dc2626;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:.75rem;}
+.empty-state{color:var(--text-muted,#64748b);font-size:.88rem;margin:0;padding:8px 0;}
+.muted{color:var(--text-muted,#64748b);font-size:.8rem;}
+.result-link a{display:inline-block;margin:10px 0;padding:10px 18px;background:var(--brand);color:#fff;border-radius:10px;font-weight:700;text-decoration:none;font-size:.9rem;}
+.ok{color:#16a34a;font-weight:700;}
+.no{color:#dc2626;font-weight:700;}
+.chip{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:700;margin:0 4px 8px 0;}
+.chip.ok{background:rgba(34,197,94,.15);color:#16a34a;}
+.chip.no{background:rgba(239,68,68,.15);color:#dc2626;}
+.audit-summary{margin:8px 0;}
+.tw-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:420px;}
+.tw-thumb{height:0;padding-top:52%;background:#1e293b center/cover no-repeat;}
+.tw-card.large .tw-thumb{padding-top:56%;}
+.tw-body{padding:12px 14px;}
+.tw-domain{font-size:.72rem;color:#8899a6;margin-bottom:4px;}
+.tw-title{font-size:.95rem;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:4px;}
+.tw-desc{font-size:.8rem;color:var(--text-muted,#64748b);line-height:1.4;}
+</style>
+
+<script>
+(function(){
+var inText=document.getElementById('inText'),outText=document.getElementById('outText');
+var runBtn=document.getElementById('runBtn'),clearBtn=document.getElementById('clearBtn'),copyBtn=document.getElementById('copyBtn'),downloadBtn=document.getElementById('downloadBtn');
+var addBtn=document.getElementById('addBtn');
+
+function copyText(text,btn,done,orig){
+ function d(){btn.textContent=done;setTimeout(function(){btn.textContent=orig;},2000);}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(d);}
+ else{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);d();}
+}
+function escHtml(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var kwEl=document.getElementById('kw'),posEl=document.getElementById('pos'),engineSel=document.getElementById('engine'),rdateEl=document.getElementById('rdate');
+
+var STORE_KEY='tpw_rankings';
+function loadAll(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||[];}catch(e){return [];}}
+function saveAll(a){localStorage.setItem(STORE_KEY,JSON.stringify(a));}
+function render(){
+ var a=loadAll();var wrap=document.getElementById('tableWrap');
+ if(!a.length){wrap.innerHTML='<p class="empty-state">No entries yet. Add your first keyword position above.</p>';return;}
+ var rows='';
+ var byKw={};a.forEach(function(e,i){var k=e.kw.toLowerCase();if(!byKw[k])byKw[k]=[];byKw[k].push(i);});
+ a.slice().reverse().forEach(function(e,i){
+  var prev=null;var list=byKw[e.kw.toLowerCase()]||[];var idx=list.indexOf(a.indexOf(e));if(idx>0)prev=a[list[idx-1]];
+  var trend='';
+  if(prev&&prev.pos!==undefined&&e.pos!==undefined){if(e.pos<prev.pos)trend='<span class="trend up">▲ +'+(prev.pos-e.pos)+'</span>';else if(e.pos>prev.pos)trend='<span class="trend down">▼ -'+(e.pos-prev.pos)+'</span>';else trend='<span class="trend flat">=</span>';}
+  rows+='<tr><td>'+escHtml(e.kw)+'</td><td>'+escHtml(e.engine||'')+'</td><td>'+escHtml(String(e.pos))+' '+trend+'</td><td>'+escHtml(e.date||'-')+'</td><td><button class="row-del" data-i="'+i+'" type="button">Delete</button></td></tr>';
+ });
+ wrap.innerHTML='<table class="rank-table"><thead><tr><th>Keyword</th><th>Engine</th><th>Position</th><th>Date</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>';
+ wrap.querySelectorAll('.row-del').forEach(function(b){b.addEventListener('click',function(){var arr=loadAll();arr.splice(b.getAttribute('data-i'),1);saveAll(arr);render();});});
+}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+addBtn.addEventListener('click',function(){
+ var kw=kwEl.value.trim();if(!kw){alert('Please enter a keyword.');return;}
+ var pos=parseInt(posEl.value,10);if(!pos||pos<1){alert('Please enter a valid position (1 or higher).');return;}
+ var arr=loadAll();arr.push({kw:kw,pos:pos,engine:engineSel.value,date:rdateEl.value||new Date().toISOString().slice(0,10)});saveAll(arr);
+ kwEl.value='';posEl.value='1';render();kwEl.focus();
+});
+clearBtn.addEventListener('click',function(){if(confirm('Delete all ranking entries?')){localStorage.removeItem(STORE_KEY);render();}});
+copyBtn.addEventListener('click',function(){
+ var a=loadAll();if(!a.length)return;
+ var csv='Keyword,Engine,Position,Date\n'+a.map(function(e){return '"'+String(e.kw).replace(/"/g,'""')+'","'+e.engine+'","'+e.pos+'","'+e.date+'"';}).join('\n');
+ copyText(csv,this,'Copied!','Copy Table (CSV)');
+});
+render();
+function runSafe(){try{run();}catch(e){if(outText)outText.value='Error: '+e.message;else if(document.getElementById('outBox'))document.getElementById('outBox').innerHTML='<p class="muted">Error: '+String(e.message).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p>';}}
+if(runBtn)runBtn.addEventListener('click',runSafe);
+if(clearBtn)clearBtn.addEventListener('click',function(){if(inText)inText.value='';if(outText)outText.value='';var ob=document.getElementById('outBox');if(ob)ob.innerHTML='<p class="empty-state">Enter your details above and click the button.</p>';if(inText)inText.focus();});
+if(copyBtn)copyBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;copyText(val,this,'Copied!','Copy Result');
+});
+if(downloadBtn)downloadBtn.addEventListener('click',function(){
+var val=outText&&outText.value!==undefined?outText.value:outText.textContent;
+if(!val)return;
+var blob=new Blob([val],{type:'text/plain'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='website-ranking-checker.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+});
+})();
+</script>
