@@ -1,0 +1,22 @@
+/* ============================================================
+   TOOLS PRO WEB — theme.css
+   Ye file <b:skin> ke andar jane wali CSS ka SOURCE hai.
+   Yahan edit karein, phir build script se theme regenerate karein.
+   ============================================================ */
+
+:root{
+  --royal:#1E4FD8;--royal-2:#2F6BFF;--sky:#EAF1FF;--bg:#F4F7FF;
+  --card:#FFFFFF;--ink:#0E1633;--muted:#5B6B8C;--line:#DBE4FA;
+  --chip:#FFFFFF;--shadow:0 10px 30px rgba(30,79,216,.10);
+  --shadow-lg:0 18px 50px rgba(30,79,216,.18);
+  --grad:linear-gradient(135deg,#1E4FD8 0%,#2F6BFF 45%,#6A4DFF 100%);
+  --radius:18px;
+}
+[data-theme="dark"]{
+  --royal:#4D7DFF;--sky:#0E1A3D;--bg:#070D22;--card:#0F1A3D;
+  --ink:#EAF0FF;--muted:#9DB0D8;--line:#1E2C5C;--chip:#12204A;
+  --shadow:0 10px 30px rgba(0,0,0,.45);--shadow-lg:0 18px 50px rgba(0,0,0,.6);
+}
+
+/* (Baqi CSS theme file mein already hai — yeh file reference/quick-edit ke liye hai.
+   Poori CSS ka source of truth: theme/toolsproweb-theme.xml ke <b:skin> block) */

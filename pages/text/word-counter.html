@@ -1,0 +1,68 @@
+<!-- ============================================================
+     WORD COUNTER — Tool Page
+     Blogger → Pages → New Page → HTML view → ye poora code paste karein
+     Permalink: word-counter  (URL banega: /p/word-counter.html)
+     Title: Word Counter
+     ============================================================ -->
+
+<style>
+.tool-page{max-width:860px;margin:0 auto;padding:20px 0 40px;font-family:'Manrope',sans-serif}
+.tool-head{margin-bottom:18px}
+.tool-head h1{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;color:var(--ink,#0E1633)}
+.tool-head p{color:var(--muted,#5B6B8C);font-size:.95rem;margin-top:6px}
+.tool-card{background:var(--card,#fff);border:1px solid var(--line,#DBE4FA);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(30,79,216,.08)}
+.tool-card textarea{width:100%;min-height:220px;padding:16px;border:1.5px solid var(--line,#DBE4FA);border-radius:12px;font:500 .95rem 'Manrope';color:var(--ink,#0E1633);background:var(--bg,#F4F7FF);resize:vertical;outline:none}
+.tool-card textarea:focus{border-color:#1E4FD8}
+.wc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.wc-stat{background:var(--sky,#EAF1FF);border:1px solid var(--line,#DBE4FA);border-radius:12px;padding:14px;text-align:center}
+.wc-num{font-family:'Sora';font-weight:800;font-size:1.5rem;color:#1E4FD8}
+.wc-lbl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted,#5B6B8C);margin-top:2px}
+.wc-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.wc-btn{padding:10px 20px;border-radius:50px;font-weight:700;font-size:.85rem;border:1.5px solid var(--line,#DBE4FA);background:var(--card,#fff);color:var(--ink,#0E1633);cursor:pointer}
+.wc-btn:hover{border-color:#1E4FD8;color:#1E4FD8}
+.wc-btn.primary{background:linear-gradient(135deg,#1E4FD8,#2F6BFF);color:#fff;border-color:transparent}
+@media(max-width:640px){.wc-stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="tool-page">
+  <div class="tool-head">
+    <h1>Word Counter</h1>
+    <p>Count words, characters, sentences and paragraphs in your text — instantly, 100% in your browser.</p>
+  </div>
+  <div class="tool-card">
+    <textarea id="wcInput" placeholder="Type or paste your text here..." oninput="wcCount()"></textarea>
+    <div class="wc-stats">
+      <div class="wc-stat"><div class="wc-num" id="wcWords">0</div><div class="wc-lbl">Words</div></div>
+      <div class="wc-stat"><div class="wc-num" id="wcChars">0</div><div class="wc-lbl">Characters</div></div>
+      <div class="wc-stat"><div class="wc-num" id="wcSent">0</div><div class="wc-lbl">Sentences</div></div>
+      <div class="wc-stat"><div class="wc-num" id="wcPara">0</div><div class="wc-lbl">Paragraphs</div></div>
+    </div>
+    <div class="wc-actions">
+      <button class="wc-btn primary" onclick="wcCopy()">Copy Text</button>
+      <button class="wc-btn" onclick="wcClear()">Clear</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function wcCount(){
+  var t = document.getElementById('wcInput').value;
+  var words = t.trim() ? t.trim().split(/\s+/).length : 0;
+  var chars = t.length;
+  var sents = (t.match(/[.!?]+(\s|$)/g) || []).length;
+  var paras = t.trim() ? t.trim().split(/\n\s*\n/).length : 0;
+  document.getElementById('wcWords').textContent = words;
+  document.getElementById('wcChars').textContent = chars;
+  document.getElementById('wcSent').textContent = sents;
+  document.getElementById('wcPara').textContent = paras;
+}
+function wcCopy(){
+  var el = document.getElementById('wcInput');
+  el.select();
+  try { navigator.clipboard.writeText(el.value); } catch(e){ document.execCommand('copy'); }
+}
+function wcClear(){
+  document.getElementById('wcInput').value = '';
+  wcCount();
+}
+</script>

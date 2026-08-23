@@ -1,0 +1,15 @@
+{
+  "categories": [
+    { "id": "binary",     "name": "Binary",             "pill": "Binary",      "icon": "ic-cat-binary" },
+    { "id": "converter",  "name": "Converter Tools",    "pill": "Converters",  "icon": null },
+    { "id": "gen",        "name": "Generators",         "pill": "Generators",  "icon": "ic-cat-gen" },
+    { "id": "imgpdf",     "name": "Image/PDF",          "pill": "Image-PDF",   "icon": "ic-cat-imgpdf" },
+    { "id": "calc",       "name": "Online Calculators", "pill": "Calculators", "icon": null },
+    { "id": "seo",        "name": "SEO Tools",          "pill": "SEO Tools",   "icon": null },
+    { "id": "text",       "name": "Text Tools",         "pill": "Text Tools",  "icon": null },
+    { "id": "unit",       "name": "Units",              "pill": "Units",       "icon": "ic-cat-unit" },
+    { "id": "dev",        "name": "Web Development",    "pill": "Developer",   "icon": null },
+    { "id": "web",        "name": "Web Tools",          "pill": "Web Mgmt",    "icon": null },
+    { "id": "youtube",    "name": "YouTube Tools",      "pill": "YT Tools",    "icon": null }
+  ]
+}
