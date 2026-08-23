@@ -1,0 +1,91 @@
+<div class="tool-crumbs-wrap"><div class="container">
+<nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Converter Tools</a><span class="crumb-sep">&#8250;</span><span>Color Picker</span></nav>
+</div></div>
+<section class="tool-hero"><div class="container"><div class="tool-hero-inner">
+
+
+<div><h1>Color Picker</h1><p>Pick any color and get HEX, RGB, HSL, RGBA, HSV values instantly with harmony suggestions.</p></div></div></div></section>
+
+<main class="container" style="padding-bottom:60px">
+<div class="tool-card" style="margin-bottom:24px"><div class="form-body" style="padding:28px">
+<div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+<div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+<input type="color" id="colorPicker" value="#6366f1" style="width:180px;height:180px;border:none;border-radius:var(--radius);cursor:pointer;background:none;padding:0">
+<div id="preview" style="width:180px;height:80px;border-radius:8px;border:2px solid var(--border)"></div>
+</div>
+<div style="flex:1;min-width:260px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:8px"><label style="font-weight:600;font-size:.85rem;min-width:48px">HEX</label><input type="text" id="hexVal" readonly style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:monospace;font-size:.9rem"><button onclick="copy('hexVal',this)" style="background:var(--brand);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap">Copy</button></div>
+<div style="display:flex;align-items:center;gap:8px"><label style="font-weight:600;font-size:.85rem;min-width:48px">RGB</label><input type="text" id="rgbVal" readonly style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:monospace;font-size:.9rem"><button onclick="copy('rgbVal',this)" style="background:var(--brand);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap">Copy</button></div>
+<div style="display:flex;align-items:center;gap:8px"><label style="font-weight:600;font-size:.85rem;min-width:48px">HSL</label><input type="text" id="hslVal" readonly style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:monospace;font-size:.9rem"><button onclick="copy('hslVal',this)" style="background:var(--brand);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap">Copy</button></div>
+<div style="display:flex;align-items:center;gap:8px"><label style="font-weight:600;font-size:.85rem;min-width:48px">RGBA</label><input type="text" id="rgbaVal" readonly style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:monospace;font-size:.9rem"><button onclick="copy('rgbaVal',this)" style="background:var(--brand);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap">Copy</button></div>
+<div style="display:flex;align-items:center;gap:8px"><label style="font-weight:600;font-size:.85rem;min-width:48px">HSV</label><input type="text" id="hsvVal" readonly style="flex:1;padding:8px 12px;border:2px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:monospace;font-size:.9rem"><button onclick="copy('hsvVal',this)" style="background:var(--brand);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap">Copy</button></div>
+<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px">
+<h3 style="font-size:.9rem;margin-bottom:10px;font-weight:600">Color Harmonies</h3>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px"><small>Complementary:</small><div style="display:flex;gap:4px" id="complementary"></div></div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px"><small>Analogous:</small><div style="display:flex;gap:4px" id="analogous"></div></div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px"><small>Triadic:</small><div style="display:flex;gap:4px" id="triadic"></div></div>
+</div>
+<div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap"><button onclick="randomColor()" style="padding:8px 16px;border-radius:8px;border:2px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-size:.85rem;font-weight:500;font-family:inherit">&#127922; Random Color</button></div>
+<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:14px">
+<h3 style="font-size:.9rem;margin-bottom:8px;font-weight:600">History (Last 10)</h3>
+<div style="display:flex;gap:6px;flex-wrap:wrap" id="historyList"></div>
+</div>
+</div>
+</div>
+</div></div>
+<div class="info-section"><div class="info-grid">
+<div class="info-card"><div class="info-icon green">&#128203;</div><h3>All Formats</h3><p>Get your color in HEX, RGB, HSL, RGBA, and HSV formats with one-click copy.</p></div>
+<div class="info-card"><div class="info-icon blue">&#127917;</div><h3>Color Harmonies</h3><p>Discover complementary, analogous, and triadic color combinations automatically.</p></div>
+<div class="info-card"><div class="info-icon pink">&#128337;</div><h3>Pick History</h3><p>Your last 10 picked colors are saved so you can revisit them anytime.</p></div>
+</div></div>
+</main>
+
+
+
+<script>
+var historyArr=[];var $=function(id){return document.getElementById(id)};
+function hexToRgb(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return{r:r,g:g,b:b}}
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;var mx=Math.max(r,g,b),mn=Math.min(r,g,b),d=mx-mn;var h,s,l=(mx+mn)/2;if(!d){h=s=0}else{s=l>.5?d/(2-mx-mn):d/(mx+mn);switch(mx){case r:h=((g-b)/d+(g<b?6:0))/6;break;case g:h=((b-r)/d+2)/6;break;case b:h=((r-g)/d+4)/6;break}h*=360}return{h:Math.round(h),s:Math.round(s*100),l:Math.round(l*100)}}
+function rgbToHsv(r,g,b){r/=255;g/=255;b/=255;var mx=Math.max(r,g,b),d=mx-Math.min(r,g,b);var h=0,s=mx?d/mx:0,v=mx;switch(mx){case r:h=((g-b)/d+(g<b?6:0))/6;break;case g:h=((b-r)/d+2)/6;break;case b:h=((r-g)/d+4)/6;break}return{h:Math.round(h*360),s:Math.round(s*100),v:Math.round(v*100)}}
+function rotateHue(h,deg){return((h+deg)%360+360)%360}
+function hslToHex(h,s,l){s/=100;l/=100;var a=s*Math.min(l,1-l);var f=function(n){var k=(n+h/30)%12;var c=l-a*Math.max(Math.min(k-3,9-k,1),-1);return Math.round(255*c).toString(16).padStart(2,'0')};return'#'+f(0)+f(8)+f(4)}
+function update(){
+var hex=$('colorPicker').value;var c=hexToRgb(hex);var hsl=rgbToHsl(c.r,c.g,c.b);var hsv=rgbToHsv(c.r,c.g,c.b);
+$('preview').style.background=hex;$('hexVal').value=hex.toUpperCase();$('rgbVal').value='rgb('+c.r+', '+c.g+', '+c.b+')';
+$('hslVal').value='hsl('+hsl.h+', '+hsl.s+'%, '+hsl.l+'%)';$('rgbaVal').value='rgba('+c.r+', '+c.g+', '+c.b+', 1)';
+$('hsvVal').value='hsv('+hsv.h+', '+hsv.s+'%, '+hsv.v+'%)';setHarmonies(hsl.h,hsl.s,hsl.l);addHistory(hex)}
+function setHarmonies(h,s,l){
+var comp=[hslToHex(rotateHue(h,180),s,l)];var ana=[hslToHex(rotateHue(h,30),s,l),hslToHex(rotateHue(h,-30),s,l)];
+var tri=[hslToHex(rotateHue(h,120),s,l),hslToHex(rotateHue(h,240),s,l)];
+renderGroup('complementary',comp);renderGroup('analogous',ana);renderGroup('triadic',tri)}
+function renderGroup(id,colors){
+$(id).innerHTML=colors.map(function(c){return'<div style="width:32px;height:32px;border-radius:6px;border:2px solid var(--border);cursor:pointer;background:'+c+'" title="'+c.toUpperCase()+'" onclick="pickColor(\''+c+'\')"></div>'}).join('')}
+function pickColor(hex){$('colorPicker').value=hex;update()}
+function addHistory(hex){
+historyArr=historyArr.filter(function(c){return c.toLowerCase()!==hex.toLowerCase()});historyArr.unshift(hex);
+if(historyArr.length>10)historyArr.pop();
+$('historyList').innerHTML=historyArr.map(function(c){return'<div style="width:30px;height:30px;border-radius:6px;border:2px solid var(--surface);cursor:pointer;background:'+c+'" title="'+c.toUpperCase()+'" onclick="pickColor(\''+c+'\')"></div>'}).join('')}
+function copy(id,btn){var el=$(id),val=el.value;if(!val)return;var h=btn.innerHTML;btn.innerHTML='&#10003; Copied!';
+var done=function(){setTimeout(function(){btn.innerHTML=h},1500)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(val).then(done);}
+else{var ta=document.createElement('textarea');ta.value=val;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);}}
+function randomColor(){var hex='#'+[0,1,2].map(function(){return Math.floor(Math.random()*256).toString(16).padStart(2,'0')}).join('');$('colorPicker').value=hex;update()}
+$('colorPicker').addEventListener('input',update);update();
+</script>
+<section class="container"><div class="tool-card howto-card">
+<div class="tool-card-header"><div class="tool-card-title"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> How to Use Color Picker</div></div>
+<ol class="howto-steps">
+<li>Type or paste your input into the box above.</li>
+<li>Click the <strong>Convert</strong> button — your result appears instantly.</li>
+<li>Use <strong>Copy</strong> to copy the result or <strong>Download</strong> to save it as a file.</li>
+</ol>
+</div></section>
+
+<section class="features-section"><div class="container">
+<h2 class="features-title">Why Use Color Picker?</h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon blue">&#9889;</div><h3>Fast &amp; Free</h3><p>100% free with instant results — no usage limits, no watermarks.</p></div>
+<div class="feature-card"><div class="feature-icon green">&#128274;</div><h3>Privacy First</h3><p>Everything runs locally in your browser. Your data never leaves your device.</p></div>
+<div class="feature-card"><div class="feature-icon purple">&#10003;</div><h3>No Sign-Up</h3><p>No registration or installation needed. Open the page and start working.</p></div>
+</div>
+</div></section>
