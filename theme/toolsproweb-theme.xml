@@ -214,8 +214,8 @@ footer.tpw-footer{background:var(--grad);color:#fff;margin-top:60px}
 .stats-grid,.info-grid,.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .stats-row{display:-webkit-box;display:-ms-flexbox;display:flex;gap:14px;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:14px 0}
 .stat-card,.stat-box,.info-card{background:var(--sky);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;-webkit-box-flex:1;-ms-flex:1;flex:1;min-width:100px}
-.stat-num,.stat-val,.stat-value{font-family:'Sora';font-weight:800;font-size:1.3rem;color:var(--royal)}
-.stat-lbl,.stat-label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.stat-card .stat-num,.stat-box .stat-num,.info-card .stat-num,.stat-val,.stat-value{font-family:'Sora';font-weight:800;font-size:1.3rem;color:var(--royal)}
+.stat-card .stat-lbl,.stat-box .stat-lbl,.info-card .stat-lbl,.stat-label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px}
 .stat-label-icon{display:inline-block}
 .feature-card,.howto-card,.advice-card,.privacy-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;-webkit-box-shadow:var(--shadow);box-shadow:var(--shadow)}
 .feature-icon,.advice-icon,.info-icon,.howto-card svg{width:36px;height:36px;border-radius:10px;background:var(--sky);border:1px solid var(--line);display:grid;place-items:center;color:var(--royal);margin-bottom:10px}
