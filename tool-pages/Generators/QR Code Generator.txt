@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <div class="tool-crumbs-wrap"><div class="container">
 <nav class="tool-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep">&#8250;</span><a href="/" class="crumb-cat">Generators</a><span class="crumb-sep">&#8250;</span><span>QR Code Generator</span></nav>
 </div></div>
@@ -59,18 +59,21 @@ if(!text){alert('Please enter text or URL');return}
 var size=+qrSize.value;
 var fgColor=qrColor.value||'#000000';
 var bgColor='#ffffff';
-qrOutput.innerHTML='<div class="qr-code-container" id="qrCodeContainer"><canvas id="qrcodecanvas"></canvas></div><div class="qr-download-info">Size: '+size+'x'+size+' — Color: '+fgColor+'</div>';
+qrOutput.innerHTML='<div class="qr-code-container" id="qrCodeContainer"></div><div class="qr-download-info">Size: '+size+'x'+size+' — Color: '+fgColor+'</div>';
 downloadBtn.style.display='inline-flex';
-QRCode.toCanvas(document.getElementById('qrcodecanvas'),text,{width:size,height:size,color:{dark:fgColor,light:bgColor},correctLevel:0});
+new QRCode(document.getElementById('qrCodeContainer'),{text:text,width:size,height:size,colorDark:fgColor,colorLight:bgColor,correctLevel:QRCode.CorrectLevel.M});
 }
 
 generateBtn.addEventListener('click',generateQR);
 qrInput.addEventListener('keypress',function(e){if(e.key==='Enter')generateQR()});
 
 downloadBtn.addEventListener('click',function(){
-var canvas=document.getElementById('qrcodecanvas');
-if(!canvas)return;
-var url=canvas.toDataURL('image/png');
+var holder=document.getElementById('qrCodeContainer');
+if(!holder)return;
+var cv=holder.querySelector('canvas');
+var im=holder.querySelector('img');
+var url=cv?cv.toDataURL('image/png'):(im?im.src:null);
+if(!url)return;
 var a=document.createElement('a');
 a.href=url;
 a.download='qrcode-'+Date.now()+'.png';

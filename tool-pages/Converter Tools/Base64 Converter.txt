@@ -30,7 +30,7 @@
 </div>
 </div>
 <div class="tool-sidebar" style="margin-top:20px;"><div class="info-card"><h3>100% Private</h3><p>All encoding and decoding happens in your browser. Your data never leaves your device.</p></div></div>
-</section>
+</div></section>
 
 
 <section class="container"><div class="tool-card howto-card">
