@@ -1,309 +1,548 @@
-# Tools Pro Web — Theme Update & Functional Integration Instructions
+# Tools Pro Web — Project & Theme Specification
 
-## 1. READ THIS FIRST
+## Project Identity
 
-- **Main / Base Theme:** `toolsproweb-theme.xml`
-- **Reference Theme:** `Free Online Tools.xml`
-- This project is an **UPDATE of the existing Tools Pro Web theme**, not a redesign or replacement.
-- The existing Tools Pro Web visual design, sections, layout, categories, structure, branding and overall theme direction must be preserved unless the user explicitly requests a change.
-- `Free Online Tools.xml` is a **functional reference only**.
-- Do **NOT** merge its sections, page structure, visual layout, category structure, or unrelated content into Tools Pro Web.
-- Only inspect and reuse/improve relevant **coding logic and functionality** when it is technically better or required to fix an issue in Tools Pro Web.
+**Project:** Tools Pro Web
+**Platform:** Blogger
+**Theme Type:** Professional online tools website
+**Primary Theme File:** `toolsproweb-theme.xml`
 
-## 2. PRIMARY OBJECTIVE
+Tools Pro Web is a structured, responsive online-tools platform designed to provide fast, accessible browser-based utilities through a clean and professional interface.
 
-Update `toolsproweb-theme.xml` while keeping its existing identity and structure intact.
+The existing theme is the foundation of the project. Development must be evolutionary: improve, stabilize and extend the existing implementation without unnecessarily replacing its architecture or visual identity.
 
-The goal is to:
+---
 
-1. Preserve the current Tools Pro Web theme.
-2. Preserve all existing sections unless explicitly instructed otherwise.
-3. Preserve existing working functionality.
-4. Compare functional implementations against `Free Online Tools.xml`.
-5. Bring better/stable functionality into Tools Pro Web where appropriate.
-6. Fix broken or conflicting JavaScript/CSS behavior without unnecessarily rewriting the theme.
-7. Keep the code Blogger-compatible.
-8. Make future updates safe, controlled and incremental.
+## Core Development Principles
 
-## 3. SOURCE PRIORITY
+1. Preserve the existing Tools Pro Web architecture.
+2. Preserve existing sections and their intended hierarchy.
+3. Preserve existing working features.
+4. Make focused, minimal and maintainable changes.
+5. Never rewrite a complete component when a targeted fix is sufficient.
+6. Keep all functionality compatible with Blogger.
+7. Keep the interface responsive across desktop, tablet and mobile.
+8. Maintain consistent light and dark theme behavior.
+9. Avoid unnecessary dependencies and frameworks.
+10. Do not introduce fake controls, placeholder functionality or unfinished interactions.
 
-When the two XML files contain different implementations, use this priority:
+---
 
-### Priority 1 — Tools Pro Web Theme
+## Theme Architecture
 
-`toolsproweb-theme.xml` is the source of truth for:
+The theme is organized around a professional tools-directory experience containing:
 
-- Theme design
-- Sections
-- Layout
-- Branding
-- Categories
-- Visual hierarchy
-- Existing page structure
-- Existing content structure
-
-### Priority 2 — Free Online Tools Reference
-
-`Free Online Tools.xml` may be used as a reference for:
-
-- Search functionality
-- Search/filter logic
-- Navigation/menu behavior
-- Mobile menu behavior
-- Dark/light mode toggle logic
-- Event handling
-- UI interaction logic
-- JavaScript reliability
-- Responsive behavior where it directly fixes a functional problem
-- Other reusable functional code that does not alter the Tools Pro Web structure
-
-### Never do this
-
-Do not copy the second theme's complete sections or redesign Tools Pro Web based on it.
-
-## 4. DESIGN PRESERVATION RULE
-
-The current Tools Pro Web theme must remain recognizable as the same website after updates.
-
-Do not:
-
-- Replace the entire theme
-- Rebuild the homepage from scratch
-- Import the second theme's sections
-- Replace Tools Pro Web categories with the second theme's categories
-- Copy unrelated visual components
-- Change the overall layout without user approval
-- Remove existing sections simply because another theme has a different structure
-
-Any visual change must be explicitly requested by the user or required to correct a proven functional issue.
-
-## 5. FUNCTIONAL INTEGRATION
-
-The main functional areas to inspect and stabilize are:
-
-### Search Bar
-
-- Search input must work correctly.
-- Search results/filtering must be reliable.
-- Search must not break the existing layout.
-- Search behavior must remain compatible with the Tools Pro Web tool inventory.
-- Mobile search must remain usable.
-- Prevent JavaScript errors caused by missing elements or conflicting selectors.
-
-### Navigation / Menu
-
-- Desktop navigation must work.
-- Mobile menu must open and close correctly.
-- Menu must not cover or hide important hero/tool content unexpectedly.
-- Menu state must reset correctly when a navigation item is selected.
-- Outside-click behavior should work where implemented.
-- Avoid duplicate event listeners.
-
-### Dark / Light Mode Toggle
-
-- Toggle must work consistently.
-- Theme preference should persist when appropriate.
-- System preference can be respected when no saved preference exists.
-- Toggle must not break layout or text visibility.
-- Light and dark states must use the existing Tools Pro Web design tokens unless the user later requests color changes.
-
-### Tool Filtering / Categories
-
-- Existing Tools Pro Web category structure must remain unchanged.
-- Filtering must target the correct tools.
-- Category controls must not conflict with search.
-- Empty or invalid searches should fail gracefully.
-
-### Buttons and Interactive Controls
-
-- Every existing functional control must remain functional after changes.
-- Do not leave fake buttons, dead controls or placeholder interactions.
-- Event listeners should be attached safely.
-- Avoid duplicate IDs.
-
-## 6. JAVASCRIPT RULES
-
-- Prefer the existing vanilla JavaScript approach.
-- Do not introduce a framework unless explicitly requested.
-- Reuse stable patterns where appropriate.
-- Check that referenced DOM elements actually exist before attaching listeners.
-- Avoid global variable collisions.
-- Avoid duplicate initialization.
-- Avoid adding multiple listeners to the same control.
-- Keep scripts compatible with Blogger XML requirements.
-- Preserve existing working JavaScript unless there is a clear reason to improve it.
-
-## 7. CSS RULES
-
-- Preserve the current Tools Pro Web design system.
-- Reuse existing CSS classes and variables where possible.
-- Do not create duplicate CSS rules unnecessarily.
-- Avoid broad selectors that can unintentionally affect tool pages.
-- Fix responsive issues at the smallest appropriate scope.
-- Do not change colors, spacing, typography or visual hierarchy unless requested.
-
-## 8. RESPONSIVE BEHAVIOR
-
-The updated theme must be tested conceptually for:
-
-- Desktop
-- Tablet
-- Mobile
-
-Pay particular attention to:
-
-- Search bar alignment
-- Header/menu behavior
-- Mobile navigation
-- Hero section visibility
-- Toggle placement
-- Tool cards
+- Global header and navigation
+- Search interface
+- Hero/presentation area
 - Category navigation
-- Horizontal overflow
-- Content being hidden behind fixed/sticky elements
+- Tool directory/cards
+- Tool interaction elements
+- Supporting content areas
+- Footer and utility controls
+- Responsive mobile navigation
+- Light/dark appearance system
 
-A mobile fix must not break desktop or tablet behavior.
+The existing hierarchy and section arrangement are part of the site's identity and should remain stable during routine development.
 
-## 9. BLOGGER COMPATIBILITY
+---
 
-The final theme must remain valid for Blogger.
+## Header System
 
-Preserve required Blogger template structures and tags.
+The header is a primary navigation and interaction area.
 
-Do not replace Blogger-specific template logic with incompatible HTML-only structures.
+Required behavior:
 
-Before considering a change complete, verify that:
+- Brand/site identity remains accessible.
+- Primary navigation works correctly.
+- Search remains usable.
+- Theme toggle remains accessible.
+- Mobile navigation switches cleanly between closed and open states.
+- Header controls must not overlap each other.
+- Sticky/fixed behavior must not hide important page content.
 
-- XML remains well-formed.
-- Blogger template tags remain intact.
-- JavaScript does not introduce invalid XML characters or markup.
-- CSS/JS remains embedded or referenced in a Blogger-compatible way.
+Any header modification must preserve the existing visual hierarchy unless a specific redesign is requested.
 
-## 10. EXISTING FUNCTIONALITY FIRST
+---
 
-Before changing any existing function:
+## Search System
 
-1. Identify how it currently works.
-2. Identify the problem.
-3. Compare the corresponding implementation in `Free Online Tools.xml` if relevant.
-4. Select the safer implementation.
-5. Modify only the necessary code.
-6. Preserve unrelated code.
+The search interface is a core feature of Tools Pro Web.
 
-Never rewrite a complete component just because a smaller fix is possible.
+### Required behavior
 
-## 11. NO UNAUTHORIZED MERGING
+- Accept user text input.
+- Search the available tool data reliably.
+- Update visible results without unnecessary page reloads.
+- Match relevant tool names, descriptions and searchable metadata where supported.
+- Handle empty input gracefully.
+- Handle no-result states gracefully.
+- Work consistently on desktop and mobile.
+- Maintain correct alignment within the header/hero/search area.
+- Never cause horizontal overflow.
 
-The following are explicitly separate:
+### Implementation standards
 
-**Tools Pro Web theme:**
-- Main design
-- Sections
-- Layout
-- Categories
-- Branding
-- Theme identity
+- Use the existing tool data model.
+- Normalize search input where appropriate.
+- Avoid duplicate filtering logic.
+- Avoid duplicate event listeners.
+- Ensure DOM references exist before use.
+- Keep search performance suitable for a large tool directory.
 
-**Free Online Tools theme:**
-- Functional reference
-- Coding reference
-- Interaction reference
+---
 
-Do not mix these responsibilities.
+## Navigation & Menu System
 
-## 12. FUTURE UPDATES
+### Desktop
 
-This document will be expanded later when the user requests additional updates such as:
+- Navigation items remain visible and usable.
+- Active/hover states remain clear.
+- Navigation must not shift unexpectedly when search or other controls are used.
 
-- Management/settings changes
-- Brand/color changes
-- Header improvements
-- Search improvements
-- Menu improvements
-- Additional tool features
-- New sections specifically requested for Tools Pro Web
-- SEO improvements
-- Performance improvements
-- Accessibility improvements
-- AdSense-friendly layout refinements
+### Mobile
 
-Future changes must follow the same preservation-first approach.
+- Mobile navigation must open and close reliably.
+- Menu state must be predictable.
+- Selecting a navigation item should close the menu when appropriate.
+- Menu overlays must not permanently cover hero or tool content.
+- Body scrolling must be handled correctly when an overlay menu is active.
+- Closing/reopening the menu must restore the correct state.
 
-## 13. CHANGE SAFETY RULE
+Avoid multiple competing menu implementations.
 
-Every update should answer these questions before implementation:
+---
 
-- Is this change explicitly requested?
-- Does it affect the existing Tools Pro Web design?
-- Is it only a functional improvement?
-- Can the same result be achieved with a smaller change?
-- Could it break another section?
-- Could it break mobile behavior?
-- Could it break dark/light mode?
-- Could it break Blogger XML validity?
+## Theme Appearance System
 
-If a requested change conflicts with the existing structure, preserve the structure and modify only the required implementation.
+Tools Pro Web supports light and dark appearance modes.
 
-## 14. VALIDATION CHECKLIST
+### Requirements
 
-After every meaningful update, verify:
+- Toggle must work reliably.
+- Appearance changes must apply consistently across the interface.
+- Text and controls must remain readable in both modes.
+- User preference should persist where the existing implementation supports persistence.
+- Initial appearance should avoid unnecessary visual flashing where practical.
+- Existing design tokens should be reused instead of creating parallel color systems.
+
+Future color and branding changes must be applied centrally through the theme's design-token system wherever possible.
+
+---
+
+## Tool Data Architecture
+
+The tool directory must use a consistent data structure.
+
+Each tool should have sufficient information for rendering and discovery, such as:
+
+- Unique identifier
+- Tool name
+- Description
+- Category
+- URL/route
+- Icon or visual identifier
+- Searchable metadata where applicable
+
+The existing tool inventory and category architecture must remain internally consistent.
+
+### Data rules
+
+- Do not create duplicate tool IDs.
+- Do not create broken links.
+- Do not assign invalid categories.
+- Do not remove working tools without an explicit requirement.
+- Keep display data and filtering data synchronized.
+
+---
+
+## Category & Filtering System
+
+Categories are a core discovery mechanism.
+
+Required behavior:
+
+- Category controls must identify the correct tool set.
+- Selecting a category must update the displayed tools correctly.
+- Search and category filtering must work together without conflicting state.
+- Reset/default state must restore the expected full tool directory.
+- Invalid or empty states must fail gracefully.
+- Category controls must remain accessible on mobile.
+
+The existing category architecture is part of the site's information structure and should not be replaced during functional maintenance.
+
+---
+
+## Tool Cards
+
+Tool cards should provide a consistent, recognizable representation of each utility.
+
+Cards should maintain:
+
+- Consistent dimensions
+- Clear title hierarchy
+- Readable descriptions
+- Accessible interaction targets
+- Consistent icons
+- Predictable hover/focus states
+- Correct tool links
+- Responsive behavior
+
+Do not introduce unnecessary card variants unless a specific feature requires one.
+
+---
+
+## JavaScript Architecture
+
+Use maintainable, defensive JavaScript.
+
+### Rules
+
+- Prefer the existing vanilla JavaScript architecture.
+- Keep functionality modular and focused.
+- Avoid unnecessary global variables.
+- Avoid global namespace pollution.
+- Check DOM availability before initialization.
+- Prevent duplicate initialization.
+- Prevent duplicate event listeners.
+- Use clear function responsibilities.
+- Avoid conflicting selectors and IDs.
+- Fail gracefully when optional elements are absent.
+- Keep interactive state predictable.
+
+### Initialization
+
+Interactive systems should initialize safely after the required DOM is available.
+
+Initialization must not depend on fragile execution order when avoidable.
+
+---
+
+## CSS Architecture
+
+Maintain a coherent design system.
+
+### Standards
+
+- Reuse existing variables/tokens.
+- Reuse existing component classes when appropriate.
+- Avoid unnecessary duplicate selectors.
+- Avoid overly broad selectors.
+- Keep responsive rules organized.
+- Keep component-specific styling scoped.
+- Avoid hard-coded values when an existing design token is appropriate.
+- Do not introduce a second competing design system.
+
+---
+
+## Responsive Design
+
+The theme must provide a complete experience across:
+
+### Desktop
+
+- Full navigation
+- Proper search positioning
+- Stable tool grid
+- Balanced spacing
+- No unintended layout shifts
+
+### Tablet
+
+- Adaptive navigation
+- Appropriate grid density
+- Correct spacing and typography
+- Usable search and controls
+
+### Mobile
+
+- Compact header
+- Reliable mobile menu
+- Usable search
+- Correct hero visibility
+- Accessible theme toggle
+- Single-column or appropriately compact tool presentation
+- No horizontal scrolling
+- No controls covering important content
+
+Every responsive fix must be evaluated against all three viewport classes.
+
+---
+
+## Accessibility
+
+Tools Pro Web should provide an accessible interface.
+
+Requirements include:
+
+- Semantic HTML where practical
+- Keyboard-accessible controls
+- Visible focus states
+- Appropriate button/link semantics
+- Accessible labels for icon-only controls
+- Sufficient text/background contrast
+- Logical heading hierarchy
+- No interaction that depends exclusively on hover
+- Responsive controls usable with touch
+
+---
+
+## Performance
+
+Prioritize fast loading and efficient interaction.
+
+- Avoid unnecessary libraries.
+- Avoid duplicate scripts.
+- Avoid duplicate CSS.
+- Keep JavaScript lightweight.
+- Avoid expensive operations on every keystroke where unnecessary.
+- Use efficient filtering for the tool directory.
+- Avoid layout-triggering operations when they can be minimized.
+- Keep external assets limited to those that provide clear value.
+
+---
+
+## Blogger Compatibility
+
+All theme changes must remain compatible with Blogger's template system.
+
+Requirements:
+
+- Preserve required Blogger template syntax.
+- Preserve Blogger-specific sections and widgets where required.
+- Keep XML well-formed.
+- Escape markup correctly where Blogger XML requires it.
+- Ensure embedded JavaScript and CSS remain valid inside the template.
+- Do not replace Blogger template logic with incompatible structures.
+
+Before finalizing a theme update, validate XML structure and Blogger-specific syntax.
+
+---
+
+## SEO Foundation
+
+The theme should maintain a technically sound SEO foundation.
+
+Requirements include:
+
+- Unique and meaningful page titles
+- Useful meta descriptions
+- Canonical URLs where appropriate
+- Semantic document structure
+- Descriptive headings
+- Crawlable internal links
+- Mobile-friendly rendering
+- Fast page performance
+- Appropriate Open Graph metadata
+- Structured data only where relevant and accurate
+- No misleading metadata or fake content
+
+SEO improvements must not damage usability or existing theme structure.
+
+---
+
+## Content & Tool Integrity
+
+All visible tool information must correspond to real functionality.
+
+Never add:
+
+- Fake tools
+- Fake statistics
+- Fake ratings
+- Fake reviews
+- Non-working buttons
+- Placeholder links presented as real tools
+- Misleading claims
+
+A tool should not be advertised as functional until its actual interaction and destination are verified.
+
+---
+
+## Code Maintenance Rules
+
+When modifying existing code:
+
+1. Locate the existing implementation.
+2. Understand its dependencies.
+3. Identify the smallest safe change.
+4. Implement the change.
+5. Check related interactions.
+6. Check responsive behavior.
+7. Check light/dark behavior.
+8. Validate Blogger/XML compatibility.
+9. Remove obsolete code created by the change.
+10. Confirm that unrelated functionality remains intact.
+
+Avoid destructive rewrites.
+
+---
+
+## Error Prevention
+
+Common failure areas must be checked after functional changes:
+
+- Search selectors
+- Menu selectors
+- Theme toggle selectors
+- Category filter state
+- Tool card selectors
+- Duplicate IDs
+- Missing DOM elements
+- Duplicate event handlers
+- CSS specificity conflicts
+- Mobile overlays
+- Fixed/sticky positioning
+- XML escaping
+- Broken tool URLs
+
+A fix for one component must not silently break another component.
+
+---
+
+## Visual Consistency
+
+All components should follow the established Tools Pro Web visual language.
+
+Maintain consistency in:
+
+- Typography
+- Border radius
+- Spacing
+- Shadows
+- Icons
+- Buttons
+- Inputs
+- Cards
+- Navigation states
+- Light/dark appearance
+
+Visual changes should be deliberate and centralized.
+
+---
+
+## Future Design Management
+
+The theme may later receive controlled visual updates including:
+
+- Primary/secondary colors
+- Accent colors
+- Header styling
+- Button styling
+- Card styling
+- Typography
+- Spacing scale
+- Theme toggle appearance
+- Management/settings controls
+
+When such updates are requested, apply them systematically through shared variables/tokens rather than scattered one-off overrides.
+
+---
+
+## Future Feature Expansion
+
+New functionality may be added while preserving the existing architecture.
+
+Potential areas include:
+
+- Additional tool utilities
+- Improved search
+- Better filtering
+- Tool favorites/recent tools
+- Improved navigation
+- Accessibility enhancements
+- Performance optimizations
+- SEO enhancements
+- Additional management controls
+
+New features must integrate naturally with the current Tools Pro Web structure.
+
+---
+
+## Quality Assurance Checklist
 
 ### Structure
-- [ ] Existing Tools Pro Web sections preserved
-- [ ] Existing layout preserved
-- [ ] Existing categories preserved
-- [ ] No unwanted sections imported from `Free Online Tools.xml`
+
+- [ ] Existing sections remain intact
+- [ ] Existing hierarchy remains intact
+- [ ] Existing category architecture remains intact
+- [ ] Existing tool inventory remains intact unless intentionally updated
 
 ### Functionality
+
 - [ ] Search works
 - [ ] Navigation works
 - [ ] Mobile menu works
-- [ ] Dark/light toggle works
+- [ ] Theme toggle works
 - [ ] Category filtering works
-- [ ] Existing tool links work
+- [ ] Tool links work
 - [ ] Interactive controls work
 
 ### Responsive
-- [ ] Desktop checked
-- [ ] Tablet checked
-- [ ] Mobile checked
-- [ ] No horizontal overflow
-- [ ] Hero content remains visible
-- [ ] Header/menu does not cover important content
 
-### Code Quality
+- [ ] Desktop verified
+- [ ] Tablet verified
+- [ ] Mobile verified
+- [ ] No horizontal overflow
+- [ ] No content hidden behind controls
+- [ ] Search remains usable
+- [ ] Menu remains usable
+
+### Code
+
 - [ ] No unnecessary duplicate JavaScript
 - [ ] No duplicate event listeners
+- [ ] No duplicate IDs
 - [ ] No obvious selector conflicts
 - [ ] No unnecessary CSS duplication
-- [ ] No console-breaking JavaScript errors
-- [ ] Blogger XML remains valid
+- [ ] No console-breaking errors
+- [ ] XML remains well-formed
+- [ ] Blogger syntax remains valid
 
-## 15. CURRENT WORKING PRINCIPLE
+### UX
 
-**DO NOT CHANGE THE TOOLS PRO WEB THEME. UPDATE IT.**
+- [ ] Buttons provide clear feedback
+- [ ] Focus states are visible
+- [ ] Touch targets are usable
+- [ ] Text remains readable in both themes
+- [ ] Empty states are handled gracefully
 
-Use `toolsproweb-theme.xml` as the foundation.
+---
 
-Use `Free Online Tools.xml` only as a reference for better or required functionality.
+## Development Workflow
 
-Preserve the existing Tools Pro Web sections and structure.
+For every requested change:
 
-Improve the underlying coding carefully and incrementally.
+### Step 1 — Inspect
 
-Do not perform a full redesign or theme replacement unless the user explicitly requests it.
+Identify the relevant existing component, data structure and dependencies.
 
-## 16. USER APPROVAL RULE
+### Step 2 — Preserve
 
-If a future request would significantly change:
+Determine which existing behavior and visual structure must remain unchanged.
 
-- Theme structure
-- Sections
-- Category architecture
-- Overall layout
-- Branding
-- Major visual design
+### Step 3 — Implement
 
-stop treating it as a routine functional update and clearly identify the structural change before implementation.
+Apply the smallest clean modification that fulfills the requirement.
 
-Minor implementation improvements that preserve the existing design can proceed within these instructions.
+### Step 4 — Integrate
+
+Ensure the change works with related systems such as search, navigation, filtering, theme appearance and responsive behavior.
+
+### Step 5 — Validate
+
+Check desktop, tablet, mobile, light mode, dark mode, functionality and Blogger/XML validity.
+
+### Step 6 — Clean
+
+Remove obsolete code and avoid leaving duplicate or conflicting implementations.
+
+---
+
+## Final Project Rule
+
+**Tools Pro Web is an evolving production theme. Preserve its identity, architecture and working behavior while continuously improving its implementation.**
+
+Changes should be professional, focused, maintainable, responsive, accessible and Blogger-compatible.
+
+The existing theme is the foundation. Improvements should strengthen the existing product rather than unnecessarily replacing it.
