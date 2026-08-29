@@ -1,0 +1,76 @@
+name: Update Tools Pro Web Theme
+
+on:
+  push:
+    paths:
+      - 'Test/.theme-update-trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  update-theme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Apply 2026 Royal Blue theme refinements
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('Test/toolsproweb-theme.xml')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              "<meta name='theme-color' content='#1E4FD8'/>": "<meta name='theme-color' content='#2563EB'/>",
+              "--brand-soft: #E7EEFC;": "--brand-soft: #DBEAFE;",
+              "--brand-light: #4C82F7;": "--brand-light: #60A5FA;",
+              "--brand-dark: #0E2E8F;": "--brand-dark: #1E3A8A;",
+              "--grad: linear-gradient(135deg,#0E2E8F 0%,#1E4FD8 35%,#3D74FF 68%,#6C63FF 100%);": "--grad: linear-gradient(135deg,#1E3A8A 0%,#1D4ED8 38%,#2563EB 72%,#3B82F6 100%);",
+              "--royal:#1E4FD8;--royal-2:#3D74FF;--sky:#EAF1FF;--bg:#F3F6FD;": "--royal:#2563EB;--royal-2:#3B82F6;--sky:#EFF6FF;--bg:#F5F8FF;",
+              "--card:#FFFFFF;--ink:#0A1230;--muted:#52628A;--line:#DEE6F8;": "--card:#FFFFFF;--ink:#0F172A;--muted:#52627A;--line:#D9E4F5;",
+              "--shadow:0 10px 32px rgba(17,52,155,.12);": "--shadow:0 10px 30px rgba(30,64,175,.10);",
+              "--shadow-lg:0 20px 55px rgba(17,52,155,.20);": "--shadow-lg:0 20px 55px rgba(30,64,175,.16);",
+              "--royal:#5F92FF;--sky:#0D1830;--bg:#050A1A;--card:#0D1830;": "--royal:#60A5FA;--sky:#0B1730;--bg:#070E1D;--card:#0D1A33;",
+          }
+
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+
+          enhancement = r'''
+/* ============ 2026 UI REFINEMENTS ============ */
+:root{
+  --tpw-primary:#2563EB;
+  --tpw-primary-hover:#1D4ED8;
+  --tpw-primary-dark:#1E3A8A;
+  --tpw-electric:#3B82F6;
+  --tpw-sky:#60A5FA;
+  --tpw-blue-soft:#DBEAFE;
+  --tpw-blue-subtle:#EFF6FF;
+  --tpw-navy:#0F172A;
+  --tpw-dark-bg:#0B1220;
+  --tpw-blue-glow:rgba(37,99,235,.22);
+}
+:focus-visible{outline:3px solid rgba(37,99,235,.45);outline-offset:3px}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(37,99,235,.45);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+'''
+
+          marker = '</b:skin>'
+          if '/* ============ 2026 UI REFINEMENTS ============ */' not in text:
+              text = text.replace(marker, enhancement + '\n' + marker, 1)
+
+          path.write_text(text, encoding='utf-8')
+
+      - name: Commit updated theme
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Test/toolsproweb-theme.xml
+          git diff --cached --quiet || git commit -m "Update Tools Pro Web theme for 2026 Royal Blue design"
+          git push
